@@ -113,6 +113,7 @@ func load_menu():
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	scale_root = get_node("/root/game/pixel_scale")
+	scale_root.set_scale(Vector2(5,5))
 	menu.init_root(self)
 	cursor.hide()
 	self.add_child(cursor)
