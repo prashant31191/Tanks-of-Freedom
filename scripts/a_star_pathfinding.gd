@@ -13,26 +13,31 @@ var openList = []
 var closedList = []
 var font = load("res://font.fnt")
 
-
 var lastCurrent
 
-		 
-
-func pathSearch(cost_map, startTile, endTile):
+func pathSearch(startTile, endTile):
 	searched_children.append(startTile)
 	path = [startTile, endTile]
 	var finalPath = _pathSearch2(startTile, endTile)
 
-	#todo dodaj koszt, chyba że inna metoda będzie liczyć na podstawie path
+	#removing start element
 	return finalPath
 
-func prepareCostMap(cost_map):
+func prepareCostMap(cost_map, units, ownBuildings):
 
-	grid = {}
+	notWalkable.clear()
+	grid.clear()
+
+	for pos in units:
+		var unit_pos = units[pos].get_pos_map()
+		cost_map[unit_pos.x][unit_pos.y] = 999
+
+	for pos in ownBuildings:
+		var unit_pos = ownBuildings[pos].get_pos_map()
+		cost_map[unit_pos.x][unit_pos.y] = 999
+
 	for x in range(cost_map.size()):
 		for y in range(cost_map[x].size()):
-			var not_walkable_flag
-			# 'x' means nonwalkable (no map ect)
 			if (cost_map[x][y] == 999):
 				notWalkable.append(Vector2(x,y))
 

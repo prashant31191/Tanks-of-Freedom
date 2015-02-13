@@ -21,7 +21,7 @@ New features and bug fixes will be added.
 
 * P1X Team
   * code
-    * czlowiekimadlo
+    * czlowiekimadlo https://twitter.com/czlowiekimadlo
     * WrmZ
   * gfx
     * w84death http://krzysztofjankowski.com
@@ -36,3 +36,4 @@ http://globalgamejam.org/2015/games/tanks-freedom-p1x
 
 Poznan Game Jam
 https://www.facebook.com/poznangamejam
+

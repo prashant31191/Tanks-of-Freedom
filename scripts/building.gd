@@ -19,7 +19,6 @@ var TYPE_AIRPORT = 3;
 const HAS_SAME_TYPE_OF_UNIT_MODIFIER = 3;
 const IN_DANGER_MODIFIER  = 5
 
-
 func get_pos_map():
 	return position_on_map
 
@@ -51,16 +50,20 @@ func set_frame(number):
 	var new_frame = Rect2(number * 32, current_frame.pos.y, 32, 32)
 	set_region_rect(new_frame)
 
-func spawn_unit(player):
-	var unit = null
+func get_spawn_type():
 	if type == TYPE_BUNKER || type == TYPE_BARRACKS:
-		unit = object_factory.build_unit(0, player)
+		return 0
 	if type == TYPE_FACTORY:
-		unit = object_factory.build_unit(1, player)
+		return 1
 	if type == TYPE_AIRPORT:
-		unit = object_factory.build_unit(2, player)
+		return 2
 
-	return unit
+func spawn_unit(player):
+	var unit_type = self.get_spawn_type()
+	if unit_type != null:
+		return object_factory.build_unit(unit_type, player)
+
+	return null
 
 func get_required_ap():
 	if type == TYPE_BARRACKS:
@@ -76,24 +79,34 @@ func get_required_ap():
 
 func get_building_name():
 	if type == TYPE_BUNKER:
-		return "BUNKER"
+		return "HQ"
 	if type == TYPE_BARRACKS:
 		return "BARRACKS"
 	if type == TYPE_FACTORY:
 		return "FACTORY"
 	if type == TYPE_AIRPORT:
-		return "AIRFIELD"
+		return "AIRPORT"
 
 func get_cost():
 	return get_required_ap()
 
 func estimate_action(action_type, enemy_units_nearby, own_units):
-	var score = 100
-	score = score + enemy_units_nearby.size() * IN_DANGER_MODIFIER # todo should be only for soldiers or smth
-	score = score - get_required_ap() * 2
-	score = score - own_units.size()
+	var score = 120
+	score = score + enemy_units_nearby.size() * IN_DANGER_MODIFIER
+	score = score - get_required_ap()
+	score = score - own_units.size() * 10
 
-	#todo - ten sam typ obiektow - nie ma sensu produkowac na siłe jednostek jednego typu
+	var spawn_unit_type = self.get_spawn_type()
+	var same_units_count = 0
+	for pos in own_units:
+		own_units[pos].get_type() == spawn_unit_type
+		same_units_count = same_units_count + 1
+
+	if (same_units_count == 0):
+		score = score + 50
+	else:
+		score = score - 10 * same_units_count
+
 	return score
 
 
