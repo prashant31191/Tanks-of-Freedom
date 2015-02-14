@@ -1,6 +1,6 @@
 var tileSize = 40
 var tileSizeVector = Vector2(tileSize,tileSize)
-var gridWidth= 20; var gridHeight = 15
+var gridWidth= 30; var gridHeight = 30
 var grid = {}
 var startTile
 var endTile
@@ -23,7 +23,7 @@ func pathSearch(startTile, endTile):
 	#removing start element
 	return finalPath
 
-func prepareCostMap(cost_map, units, ownBuildings):
+func prepareCostMap(cost_map, units, ownBuildings, terrain):
 
 	notWalkable.clear()
 	grid.clear()
@@ -34,6 +34,11 @@ func prepareCostMap(cost_map, units, ownBuildings):
 
 	for pos in ownBuildings:
 		var unit_pos = ownBuildings[pos].get_pos_map()
+		cost_map[unit_pos.x][unit_pos.y] = 999
+
+	# # todo this is const for map
+	for pos in terrain:
+		var unit_pos = terrain[pos].get_pos_map()
 		cost_map[unit_pos.x][unit_pos.y] = 999
 
 	for x in range(cost_map.size()):

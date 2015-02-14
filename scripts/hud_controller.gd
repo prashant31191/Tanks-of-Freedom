@@ -98,7 +98,7 @@ func init_root(root, action_controller_object, hud):
 	zoom_in_button.connect("pressed", action_controller, "camera_zoom_in")
 	zoom_out_button.connect("pressed", action_controller, "camera_zoom_out")
 	
-	menu_button = hud.get_node("menu_button/escape")
+	menu_button = hud.get_node("game_card/escape")
 	menu_button.connect("pressed", root, "toggle_menu")
 
 func show_unit_card(unit):
@@ -178,6 +178,7 @@ func warn_end_turn():
 
 func warn_player_ap():
 	hud_unit_ap_red.show()
+
 
 func show_win(player):
 	end_turn_card.hide()
