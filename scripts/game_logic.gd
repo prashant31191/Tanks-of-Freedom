@@ -14,9 +14,11 @@ var intro = preload('res://intro.xscn').instance()
 
 var action_controller
 var sound_controller = preload("sound_controller.gd").new()
+var hud_controller = preload('hud_controller.gd').new()
 var map_template
 var current_map
 var hud
+var ai_timer
 
 var maps = {
 	'tutorial' : preload('res://maps/map_0.xscn'),
@@ -25,20 +27,24 @@ var maps = {
 	'forest' : preload('res://maps/map_2.xscn')
 }
 
-var sound_settings = {
+var settings = {
 	'sound_enabled' : true,
-	'music_enabled' : true
+	'music_enabled' : true,
+	'shake_enabled' : true,
+	'cpu_0' : false,
+	'cpu_1' : false
 }
 
 var is_map_loaded = false
 var is_intro = true
 var is_paused = false
+var is_locked_for_cpu = false
 
 func _input(event):
 	if is_intro:
 		self.load_menu()
 
-	if is_map_loaded && is_paused == false:
+	if is_map_loaded && is_paused == false && is_locked_for_cpu == false:
 		if (event.type == InputEvent.MOUSE_MOTION or event.type == InputEvent.MOUSE_BUTTON):
 
 			game_scale = get_node("/root/game/pixel_scale").get_scale()
@@ -56,13 +62,14 @@ func _input(event):
 				action_controller.handle_action(selector_position)
 				action_controller.post_handle_action()
 
-		if (event.type == InputEvent.KEY):
-			var timer = get_node("AITimer")
-			timer.inject_action_controller(action_controller)
-			timer.start()
-
 	if Input.is_action_pressed('ui_cancel'):
 		self.toggle_menu()
+
+func start_ai_timer():
+	var timer = get_node("AITimer")
+	timer.reset()
+	timer.inject_action_controller(action_controller, hud_controller)
+	timer.start()
 
 func load_map(template_name):
 	self.unload_map()
@@ -85,6 +92,8 @@ func load_map(template_name):
 	menu.close_button.show()
 	is_map_loaded = true
 	set_process_input(true)
+	if settings['cpu_0'] == false:
+		self.unlock_for_player()
 
 func unload_map():
 	if is_map_loaded == false:
@@ -100,7 +109,11 @@ func unload_map():
 	hud.queue_free()
 	hud = null
 	menu.close_button.hide()
+<<<<<<< HEAD
 	return
+=======
+	ai_timer.reset_state()
+>>>>>>> origin/master
 
 func toggle_menu():
 	if is_map_loaded:
@@ -122,10 +135,19 @@ func load_menu():
 	self.remove_child(intro)
 	intro.queue_free()
 
+func lock_for_cpu():
+	is_locked_for_cpu = true
+	hud.hide()
+
+func unlock_for_player():
+	is_locked_for_cpu = false
+	hud.show()
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	scale_root = get_node("/root/game/pixel_scale")
 	scale_root.set_scale(Vector2(5,5))
+	ai_timer = get_node("AITimer")
 	sound_controller.init_root(self)
 	menu.init_root(self)
 	cursor.hide()
