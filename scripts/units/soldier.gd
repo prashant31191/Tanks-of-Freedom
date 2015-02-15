@@ -3,12 +3,12 @@ extends "behaviours.gd"
 func _init():
 	type = 0
 
-	life = 10
-	max_life = 10
-	attack = 3
+	life = 8
+	max_life = 8
+	attack = 5
 	plain = 2
 	road = 2
-	river = 3
+	river = 4
 	max_ap = 8
 	attack_ap = 2
 	max_attacks_number = 1
@@ -33,7 +33,4 @@ func can_capture_building(building):
 		return true
 
 	return false;
-
-func can_capture():
-	return true
 
