@@ -45,7 +45,7 @@ func get_type():
 
 func get_pos_map():
 	return position_on_map
-	
+
 func get_initial_pos():
 	position_on_map = current_map.world_to_map(self.get_pos())
 	last_position_on_map = position_on_map
@@ -67,8 +67,17 @@ func reset_ap():
 	attacks_number = max_attacks_number
 	update_shield()
 	update_healthbar()
-	
+
 func set_pos_map(new_position):
+	if new_position.x > position_on_map.x:
+		self.set_flip_h(true)
+	elif new_position.x < position_on_map.x:
+		self.set_flip_h(false)
+	if new_position.y < position_on_map.y:
+		self.set_flip_h(true)
+	elif new_position.y > position_on_map.y:
+		self.set_flip_h(false)
+
 	self.set_pos(current_map.map_to_world(new_position))
 	last_position_on_map = position_on_map
 	position_on_map = new_position
@@ -77,7 +86,7 @@ func check_hiccup(new_position):
 	if new_position == last_position_on_map:
 		return true
 	return false
-	
+
 func can_attack():
 	if ap >= attack_ap && attacks_number > 0:
 		return true
@@ -102,18 +111,18 @@ func update_healthbar():
 	else:
 		health_bar.set_frame(0)
 	return
-	
+
 func show_explosion():
 	explosion = explosion_template.instance()
 	explosion.unit = self
 	self.add_child(explosion)
-	
+
 func show_big_explosion():
 	explosion = explosion_big_template.instance()
 	explosion.unit = self
 	self.add_child(explosion)
 	current_map.shake_camera()
-	
+
 func clear_explosion():
 	self.remove_child(explosion)
 	explosion.queue_free()
@@ -137,7 +146,7 @@ func die_after_explosion(ysort):
 	self.show_big_explosion()
 
 func update_shield():
-	if ap > 0:
+	if ap >= attack_ap:
 		icon_shield.show()
 	else:
 		icon_shield.hide()

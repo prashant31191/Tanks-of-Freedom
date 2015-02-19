@@ -18,6 +18,9 @@ var hud_unit_plain
 var hud_unit_road
 var hud_unit_river
 var hud_unit_icon
+var hud_unit_progress_ap
+var hud_unit_progress_ap_blank
+var hud_unit_progress_attack
 
 var hud_building
 var hud_building_spawn_button
@@ -75,6 +78,9 @@ func init_root(root, action_controller_object, hud):
 	hud_unit_road = hud_unit.get_node("road")
 	hud_unit_river = hud_unit.get_node("river")
 	hud_unit_icon = hud_unit.get_node("unit_icon")
+	hud_unit_progress_ap = hud_unit.get_node("progress_ap")
+	hud_unit_progress_ap_blank = hud_unit.get_node("progress_ap_blank")
+	hud_unit_progress_attack = hud_unit.get_node("progress_attack")
 
 	hud_building = hud.get_node("bottom_center/building_card")
 	hud_building_icon = hud_building.get_node("building_icon")
@@ -111,6 +117,7 @@ func update_unit_card(unit):
 	hud_unit_life.set_text(str(stats.life))
 	hud_unit_attack.set_text(str(stats.attack))
 	hud_unit_ap.set_text(str(stats.ap))
+	sync_ap_progress(stats.ap)
 	hud_unit_plain.set_text(str(stats.plain))
 	hud_unit_road.set_text(str(stats.road))
 	hud_unit_river.set_text(str(stats.river))
@@ -118,6 +125,7 @@ func update_unit_card(unit):
 		hud_unit_ap_red.hide()
 	else:
 		hud_unit_ap_red.show()
+	hud_unit_progress_attack.set_frame(stats.attacks_number)
 
 func set_unit_card_icon(unit):
 	hud_unit_icon.set_region_rect(Rect2((unit.player + 1) * 32, unit.type * 32, 32, 32))
@@ -125,7 +133,34 @@ func set_unit_card_icon(unit):
 func clear_unit_card():
 	hud_unit.hide()
 
+func sync_ap_progress(ap):
+	if ap > 8:
+		ap = 8
+	hud_unit_progress_ap_blank.set_frame(ap)
+	hud_unit_progress_ap.set_frame(ap)
+
+func mark_potential_ap_usage(active, required_ap):
+	if active == null || active.object == null || active.object.group != 'unit':
+		return
+	if hud_unit_progress_ap == null:
+		return
+	
+	var ap_left = active.object.ap - required_ap
+	if ap_left < 0:
+		ap_left = 0
+	if ap_left > 8:
+		ap_left = 8
+	hud_unit_progress_ap.set_frame(ap_left)
+	
+func set_ap_progress(ap):
+	if ap > 8:
+		ap = 8
+	hud_unit_progress_ap.set_frame(ap)
+
 func show_building_card(building):
+	if not building.can_spawn:
+		return
+	
 	hud_building_icon.set_region_rect(building.get_region_rect())
 	hud_building_unit_icon.set_region_rect(building.get_region_rect())
 	hud_building_label.set_text(building.get_building_name())
@@ -182,7 +217,6 @@ func warn_player_ap():
 
 func show_win(player):
 	end_turn_card.hide()
-	turn_card.hide()
 	self.clear_building_card()
 	self.clear_unit_card()
 	if player == 0:

@@ -14,7 +14,7 @@ var intro = preload('res://intro.xscn').instance()
 
 var action_controller
 var sound_controller = preload("sound_controller.gd").new()
-var hud_controller = preload('hud_controller.gd').new()
+var hud_controller
 var map_template
 var current_map
 var hud
@@ -47,7 +47,7 @@ func _input(event):
 	if is_map_loaded && is_paused == false && is_locked_for_cpu == false:
 		if (event.type == InputEvent.MOUSE_MOTION or event.type == InputEvent.MOUSE_BUTTON):
 
-			game_scale = get_node("/root/game/pixel_scale").get_scale()
+			game_scale = scale_root.get_scale()
 			map_pos = current_map_terrain.get_pos()
 
 			selector_position = current_map_terrain.world_to_map( Vector2((event.x/game_scale.x)-map_pos.x,(event.y/game_scale.y)-map_pos.y))
@@ -55,12 +55,20 @@ func _input(event):
 			var position = current_map_terrain.map_to_world(selector_position)
 			position.y += 2
 			selector.set_pos(position)
+			selector.calculate_cost()
+			hud_controller.mark_potential_ap_usage(action_controller.active_field, selector.current_cost)
 
 		# MOUSE SELECT
 		if (event.type == InputEvent.MOUSE_BUTTON):
 			if (event.pressed and event.button_index == BUTTON_LEFT):
 				action_controller.handle_action(selector_position)
 				action_controller.post_handle_action()
+
+		if event.type == InputEvent.KEY && event.scancode == KEY_H && event.pressed:
+			if hud.is_visible():
+				hud.hide()
+			else:
+				hud.show()
 
 	if Input.is_action_pressed('ui_cancel'):
 		self.toggle_menu()
@@ -88,6 +96,8 @@ func load_map(template_name):
 	action_controller = preload("action_controller.gd").new()
 	action_controller.init_root(self, current_map, hud)
 	action_controller.switch_to_player(0)
+	hud_controller = action_controller.hud_controller
+	selector.init(action_controller)
 	menu.close_button.show()
 	is_map_loaded = true
 	set_process_input(true)
@@ -110,8 +120,11 @@ func unload_map():
 	self.remove_child(hud)
 	hud.queue_free()
 	hud = null
+	selector.reset()
 	menu.close_button.hide()
 	ai_timer.reset_state()
+	hud_controller = null
+	action_controller = null
 
 func toggle_menu():
 	if is_map_loaded:
@@ -136,10 +149,12 @@ func load_menu():
 func lock_for_cpu():
 	is_locked_for_cpu = true
 	hud.get_node("turn_card").hide()
+	selector.hide()
 
 func unlock_for_player():
 	is_locked_for_cpu = false
 	hud.get_node("turn_card").show()
+	selector.show()
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

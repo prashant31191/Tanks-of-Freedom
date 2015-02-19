@@ -59,7 +59,7 @@ func handle_action(position):
 				if active_field.is_adjacent(field) && movement_controller.can_move(active_field, field) && self.has_ap():
 					if (self.capture_building(active_field, field) == BREAK_EVENT_LOOP):
 						return
-		if (field.object.group == 'unit' || field.object.group == 'building') && field.object.player == current_player:
+		if (field.object.group == 'unit' || (field.object.group == 'building' && field.object.can_spawn)) && field.object.player == current_player:
 			self.activate_field(field)
 	else:
 		if active_field != null && active_field.object != null && field != active_field && field.object == null:
@@ -77,6 +77,7 @@ func capture_building(active_field, field):
 	
 	self.activate_field(field)
 	if field.object.type == 0:
+		root_node.ai_timer.reset_state()
 		self.end_game()
 		return 1
 
@@ -86,7 +87,7 @@ func init_root(root, map, hud):
 	abstract_map.tilemap = map.get_node("terrain")
 	camera = root.scale_root
 	ysort = map.get_node('terrain/YSort')
-	selector = map.get_node('terrain/selector')
+	selector = root.selector
 	self.import_objects()
 	hud_controller.init_root(root, self, hud)
 	hud_controller.set_turn(turn)
@@ -181,7 +182,7 @@ func destroy_unit(field):
 	field.object = null
 
 func spawn_unit_from_active_building():
-	if active_field == null || active_field.object.group != 'building':
+	if active_field == null || active_field.object.group != 'building' || active_field.object.can_spawn == false:
 		return
 	var spawn_point = abstract_map.get_field(active_field.object.spawn_point)
 	var required_ap = active_field.object.get_required_ap()
@@ -246,12 +247,20 @@ func update_ap(ap):
 	if player_ap == 0:
 		hud_controller.warn_end_turn()
 
+func refill_ap():
+	position_controller.refresh()
+	var total_ap = player_ap_max
+	var buildings = position_controller.get_player_buildings(current_player)
+	for building in buildings:
+		total_ap = total_ap + buildings[building].bonus_ap
+	self.update_ap(total_ap)
+
 func switch_to_player(player):
 	self.clear_active_field()
 	current_player = player
 	self.reset_player_units(player)
 	selector.set_player(player);
-	self.update_ap(player_ap_max)
+	self.refill_ap()
 	if root_node.settings['cpu_' + str(player)]:
 		root_node.start_ai_timer()
 		root_node.lock_for_cpu()
@@ -324,6 +333,7 @@ func handle_battle(active_field, field):
 		else:
 			sound_controller.play('not_dead')
 			field.object.show_explosion()
+			self.update_unit(active_field)
 			# defender can deal damage
 			#print('defend!')
 			if battle_controller.can_attack(field.object, active_field.object):

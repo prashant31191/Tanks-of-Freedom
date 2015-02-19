@@ -3,11 +3,14 @@ extends Sprite
 export var position_on_map = Vector2(0,0)
 export var type = 0
 export var player = -1
+export var bonus_ap = 1
+export var can_spawn = true
 
 var current_map
 var group = 'building'
 var spawn_point = Vector2(0, 0)
 export var spawn_point_position = Vector2(0, 1)
+var flag
 
 var object_factory = preload('object_factory.gd').new()
 
@@ -15,12 +18,16 @@ var TYPE_BUNKER = 0;
 var TYPE_BARRACKS = 1;
 var TYPE_FACTORY = 2;
 var TYPE_AIRPORT = 3;
+var TYPE_TOWER = 4;
 
 const HAS_SAME_TYPE_OF_UNIT_MODIFIER = 3;
 const IN_DANGER_MODIFIER  = 5
 
 func get_pos_map():
 	return position_on_map
+
+func get_spawn_point_pos():
+	return spawn_point
 
 func get_initial_pos():
 	position_on_map = current_map.world_to_map(self.get_pos()) + Vector2(1, 1)
@@ -41,6 +48,7 @@ func claim(new_player):
 		self.set_frame(2)
 
 	player = new_player
+	flag.change_flag(new_player)
 
 func get_player():
 	return player
@@ -86,7 +94,9 @@ func get_building_name():
 		return "FACTORY"
 	if type == TYPE_AIRPORT:
 		return "AIRPORT"
-
+	if type == TYPE_TOWER:
+		return "GSM TOWER"
+		
 func get_cost():
 	return get_required_ap()
 
@@ -114,6 +124,7 @@ func estimate_action(action_type, enemy_units_nearby, own_units):
 func _ready():
 	add_to_group("buildings")
 	current_map = get_node("/root/game").current_map_terrain
+	flag = get_node('flag')
 	pass
 
 

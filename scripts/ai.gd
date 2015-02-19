@@ -17,8 +17,14 @@ const ACTION_MOVE_TO_CAPTURE = 5
 const SPAWN_LIMIT = 25
 const DEBUG = false
 var terrain
+var units
+var buildings
+var enemy_bunker
+
 
 func gather_available_actions(player_ap):
+	#generate new seed
+	randomize()
 	current_player = action_controller.current_player
 	current_player_ap = player_ap
 	actions = {}
@@ -26,38 +32,58 @@ func gather_available_actions(player_ap):
 	position_controller.refresh()
 	if DEBUG:
 		print('DEBUG -------------------- ')
-	var buildings = position_controller.get_player_buildings(current_player)
-	var units     = position_controller.get_player_units(current_player)
-	terrain = position_controller.get_terrain_obstacles()
+	buildings = position_controller.get_player_buildings(current_player)
+	units     = position_controller.get_player_units(current_player)
+	terrain   = position_controller.get_terrain_obstacles()
+	#todo
+	# var enemy_player = abs(action_controller.current_player - 1);
+	# enemy_bunker = position_controller.get_player_bunker_position(enemy_player)
 
 	self.gather_building_data(buildings, units)
 	self.gather_unit_data(buildings, units, terrain)
 
 	return self.execute_best_action()
 
+func _prepare_cost_maps(own_buildings, own_units, terrain):
+	var cost_maps = {}
+	# for each unit type
+	for unit_type in range(0,3):
+		print('COST_MAP', unit_type)
+		cost_maps[unit_type] = pathfinding.prepareCostMap(abstract_map.tiles_cost_map[unit_type], own_units, own_buildings, terrain)
+
+	return cost_maps
 
 func gather_unit_data(own_buildings, own_units, terrain):
 	if own_units.size() == 0:
 		return
-	
+
+	var cost_maps = self._prepare_cost_maps(own_buildings, own_units, terrain)
 	for pos in own_units:
 		var unit = own_units[pos]
 		if unit.get_ap() < 2:
 			return
-
 		var position = unit.get_pos_map()
 
 		# this should be already map for use in pathfinding
-		var cost_map = pathfinding.prepareCostMap(abstract_map.tiles_cost_map[unit.get_type()], own_units, own_buildings, terrain)
+
 
 		var nearby_tiles = position_controller.get_nearby_tiles(position, LOOKUP_RANGE)
+
 		var destinations = []
 
 		destinations = position_controller.get_nearby_enemy_buldings(nearby_tiles, current_player)
 		destinations = destinations + position_controller.get_nearby_empty_buldings(nearby_tiles)
 		destinations = destinations + position_controller.get_nearby_enemies(nearby_tiles, current_player)
+		self.gather_random_nearby_tile(unit)
 		for destination in destinations:
-			self.add_action(unit, destination, cost_map)
+			self.add_action(unit, destination, cost_maps[unit.get_type()])
+
+
+func gather_random_nearby_tile(unit):
+	var position = unit.get_pos_map()
+	var tiles = {}
+	var nearby_tiles = position_controller.get_nearby_tiles(position, 1)
+
 
 func gather_building_data(own_buildings, own_units):
 	if own_units.size() >= SPAWN_LIMIT:
@@ -68,9 +94,8 @@ func gather_building_data(own_buildings, own_units):
 		var building = own_buildings[pos]
 		var nearby_tiles = position_controller.get_nearby_tiles(building.get_pos_map(), LOOKUP_RANGE)
 		var enemy_units = position_controller.get_nearby_enemies(nearby_tiles, current_player)
-		
-		self.add_building_action(building, enemy_units, own_units)
 
+		self.add_building_action(building, enemy_units, own_units)
 
 func add_action(unit, destination, cost_map):
 	var path = pathfinding.pathSearch(unit.get_pos_map(), destination.get_pos_map())
@@ -78,7 +103,7 @@ func add_action(unit, destination, cost_map):
 	var hiccup = false
 	if path.size() == 0:
 		return
-		
+
 	# jakies solidne WTF?
 	if (unit.get_pos_map() == path[0]):
 		path.remove(0)
@@ -86,6 +111,7 @@ func add_action(unit, destination, cost_map):
 	if path.size() > 0:
 		# skip if this can be capture move and building cannot be captured
 		var unit_ap_cost = 0
+		var tile_ap = 0
 		# verify action_type
 		var next_tile = abstract_map.get_field(path[0])
 
@@ -103,7 +129,11 @@ func add_action(unit, destination, cost_map):
 			# elif next_tile.object.group == "terrain":
 			# 	return # no tresspassing
 		else:
-			
+			var from = action_controller.abstract_map.get_field(unit.get_pos_map())
+			var to = action_controller.abstract_map.get_field(path[0])
+			if not action_controller.movement_controller.can_move(from, to):
+				return
+
 			action_type = ACTION_MOVE
 			unit_ap_cost = abstract_map.calculate_path_cost(unit, path)
 			var last_tile = abstract_map.get_field(path[path.size() - 1])
@@ -116,7 +146,7 @@ func add_action(unit, destination, cost_map):
 					if (unit.can_attack_unit_type(last_tile.object)):
 						action_type = ACTION_MOVE_TO_ATTACK
 
-			# checking for moovement hiccup (onl for movement)
+			# checking for movement hiccup (only for movement)
 			hiccup = unit.check_hiccup(path[0])
 
 
@@ -147,7 +177,7 @@ func add_building_action(building, enemy_units_nearby, own_units):
 		if DEBUG:
 			print("DEBUG : ", self.get_action_name(action_type), " score: ", score, " ap: ", building.get_required_ap())
 		self.append_action(actionObject.new(building, null, action_type), score)
-	
+
 func append_action(action, score):
 	if actions.has(score):
 		score = score + floor(randf() * 20)
