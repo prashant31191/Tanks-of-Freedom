@@ -5,7 +5,7 @@ var elapsed = 0
 var end_turn = false
 var state = null
 
-const INTERVAL = 0.5
+const INTERVAL = 1
 const END_TURN_INTERVAL = 1.5
 
 const AI_STUFF = 1
