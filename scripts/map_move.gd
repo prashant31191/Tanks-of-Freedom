@@ -20,16 +20,19 @@ export var shakes_max = 5
 export var shake_time = 0.25
 export var shake_boundary = 5
 var shake_initial_position
+var temp_delta = 0
+var map_step = 0.01
+var near_threshold = 10
 
 func _input(event):
 	if root.is_paused:
 		return
-		
+
 	pos = terrain.get_pos()
 	if(event.type == InputEvent.MOUSE_BUTTON):
 		if (event.button_index == BUTTON_LEFT):
 			mouse_dragging = event.pressed
-			
+
 	if (event.type == InputEvent.MOUSE_MOTION):
 		if (mouse_dragging):
 			pos.x = pos.x + event.relative_x / scale.x
@@ -41,10 +44,18 @@ func _input(event):
 
 func _process(delta):
 	if not pos == target:
-		self.sX = self.k * self.sX + (1.0 - self.k) * target.x;
-		self.sY = self.k * self.sY + (1.0 - self.k) * target.y;
-		terrain.set_pos(Vector2(self.sX,self.sY))
-		underground.set_pos(Vector2(self.sX,self.sY))
+		temp_delta += delta
+		if temp_delta > map_step:
+			var diff_x = target.x - self.sX
+			var diff_y = target.y - self.sY
+			if diff_x > -near_threshold && diff_x < near_threshold && diff_y > -near_threshold && diff_y < near_threshold:
+				target = pos
+			else:
+				self.sX = self.sX + (diff_x) * temp_delta;
+				self.sY = self.sY + (diff_y) * temp_delta;
+				terrain.set_pos(Vector2(self.sX,self.sY))
+				underground.set_pos(Vector2(self.sX,self.sY))
+			temp_delta = 0
 
 func move_to(target):
 	if not mouse_dragging:
@@ -53,15 +64,23 @@ func move_to(target):
 func move_to_map(target):
 	if not mouse_dragging:
 		game_size = get_node("/root/game").get_size()
-		var target_position = self.map_to_world(target*Vector2(-1,-1))
-		self.target = target_position + Vector2(game_size.x/(2*scale.x),game_size.y/(2*scale.y))
+		var target_position = self.map_to_world(target*Vector2(-1,-1)) + Vector2(game_size.x/(2*scale.x),game_size.y/(2*scale.y))
+		var diff_x = target_position.x - self.sX
+		var diff_y = target_position.y - self.sY
+		var near_x = game_size.x * (0.1 / scale.x)
+		var near_y = game_size.y * (0.1 / scale.y)
+		# print(near_x)
+		# print(diff_x)
+		if diff_x > -near_x && diff_x < near_x && diff_y > -near_y && diff_y < near_y:
+			return
+		self.target = target_position
 
 func shake_camera():
 	if root.settings['shake_enabled'] and not mouse_dragging:
 		shakes = 0
 		shake_initial_position = terrain.get_pos()
 		self.do_single_shake()
-	
+
 func do_single_shake():
 	if shakes < shakes_max:
 		var direction_x = randf()
@@ -72,7 +91,7 @@ func do_single_shake():
 			distance_x = -distance_x
 		if direction_y <= 0.5:
 			distance_y = -distance_y
-		
+
 		pos = Vector2(shake_initial_position) + Vector2(distance_x, distance_y)
 		target = pos
 		underground.set_pos(pos)
@@ -85,7 +104,7 @@ func do_single_shake():
 		underground.set_pos(shake_initial_position)
 		terrain.set_pos(shake_initial_position)
 
-	
+
 func _ready():
 	root = get_node("/root/game")
 	terrain = root.current_map_terrain

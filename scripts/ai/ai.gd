@@ -2,7 +2,7 @@ var position_controller
 var pathfinding
 var abstract_map
 var action_controller
-const LOOKUP_RANGE = 10
+const LOOKUP_RANGE = 8
 var actions = {}
 var current_player_ap = 0
 var current_player
@@ -23,14 +23,15 @@ func _init(controller, astar_pathfinding, map, action_controller_object):
 	abstract_map = map
 	action_controller = action_controller_object
 	cost_grid = preload('cost_grid.gd').new(abstract_map)
-	actionBuilder = preload('actions/action_builder.gd').new(action_controller, abstract_map)
+	actionBuilder = preload('actions/action_builder.gd').new(action_controller, abstract_map, position_controller)
 
 func gather_available_actions(player_ap):
 	current_player = action_controller.current_player
 	current_player_ap = player_ap
 	actions = {}
 	# refreshing unit and building data
-	position_controller.refresh()
+	position_controller.refresh_units()
+	#position_controller.refresh_buildings()
 	if DEBUG:
 		print('DEBUG -------------------- ')
 	buildings = position_controller.get_player_buildings(current_player)
@@ -109,6 +110,10 @@ func __add_action(unit, destination):
 			# 	return # no tresspassing
 		else:
 			var from = action_controller.abstract_map.get_field(unit.get_pos_map())
+			# todo - check why this still counts as action
+			if not from.object:
+				return
+
 			var to = action_controller.abstract_map.get_field(path[0])
 			if not action_controller.movement_controller.can_move(from, to):
 				return

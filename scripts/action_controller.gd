@@ -67,7 +67,7 @@ func handle_action(position):
 				self.move_unit(active_field, field)
 
 func post_handle_action():
-	position_controller.refresh()
+	position_controller.refresh_units()
 
 func capture_building(active_field, field):
 	self.use_ap()
@@ -108,6 +108,8 @@ func init_root(root, map, hud):
 
 func activate_field(field):
 	self.clear_active_field()
+	if !field.object: #todo - investigate why there is no object
+		print("FAIL to activate field: ", field.position)
 	active_field = field
 	abstract_map.tilemap.add_child(active_indicator)
 	abstract_map.tilemap.move_child(active_indicator,0)
@@ -225,7 +227,6 @@ func in_game_menu_pressed():
 func has_ap():
 	if player_ap > 0:
 		return true
-
 	sound_controller.play('no_moves')
 	return false
 
@@ -247,7 +248,9 @@ func update_ap(ap):
 		hud_controller.warn_end_turn()
 
 func refill_ap():
-	position_controller.refresh()
+	position_controller.refresh_units()
+	position_controller.refresh_buildings()
+
 	var total_ap = player_ap_max
 	var buildings = position_controller.get_player_buildings(current_player)
 	for building in buildings:

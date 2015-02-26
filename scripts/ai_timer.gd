@@ -5,12 +5,11 @@ var elapsed = 0
 var end_turn = false
 var state = null
 
-const INTERVAL = 1
+const INTERVAL = 0.75
 const END_TURN_INTERVAL = 1.5
 
 const AI_STUFF = 1
 const END_TURN = 2
-
 
 var action_controller
 var hud_controller
@@ -18,7 +17,7 @@ var hud_controller
 func _process(delta):
 	if get_parent().is_paused:
 		return
-	
+
 	timeout += delta
 
 	if timeout > self.__get_interval():
