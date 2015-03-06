@@ -1,4 +1,4 @@
- extends Control
+extends Control
 
 var selector = preload('res://gui/selector.xscn').instance()
 var selector_position
@@ -111,7 +111,7 @@ func load_map(template_name):
 	else:
 		self.unlock_for_player()
 	sound_controller.play_soundtrack()
-	
+
 func restart_map():
 	self.load_map(current_map_name)
 
@@ -144,7 +144,7 @@ func toggle_menu():
 			is_paused = false
 			menu.hide()
 			hud.show()
-			
+
 func show_missions():
 	self.toggle_menu()
 	menu.show_maps_menu()
@@ -153,8 +153,8 @@ func load_menu():
 	is_intro = false
 	self.add_child(menu)
 	menu.close_button.hide()
-	cursor.show()
-	cursor.raise()
+	#cursor.show()
+	#cursor.raise()
 	self.remove_child(intro)
 	intro.queue_free()
 
