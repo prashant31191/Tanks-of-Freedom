@@ -48,13 +48,13 @@
 			<string> "sample" </string>
 			<resource  resource_type="Sample" path="res://assets/sounds/fx/menu.wav">  </resource>
 		</dictionary>
-		<dictionary name="samples/hurt" shared="false">
+		<dictionary name="samples/explosion" shared="false">
 			<string> "db" </string>
 			<real> 0 </real>
 			<string> "pitch" </string>
 			<real> 1 </real>
 			<string> "sample" </string>
-			<resource  resource_type="Sample" path="res://assets/sounds/fx/hurt.wav">  </resource>
+			<resource  resource_type="Sample" path="res://assets/sounds/fx/explosion.wav">  </resource>
 		</dictionary>
 		<dictionary name="samples/no_moves" shared="false">
 			<string> "db" </string>

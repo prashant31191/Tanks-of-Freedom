@@ -1,34 +1,48 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<resource_file type="PackedScene" subresource_count="19" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
-	<ext_resource path="res://units/soldier_blue.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://terrain_tileset.xml" type="TileSet"></ext_resource>
-	<ext_resource path="res://units/city_4.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://units/city_statue.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://units/city_5.xscn" type="PackedScene"></ext_resource>
+<resource_file type="PackedScene" subresource_count="18" version="1.0" version_name="Godot Engine v1.0.stable.custom_build">
 	<ext_resource path="res://units/bunker_red.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://eyecandy/grass.scn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://units/forest_2.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://units/bunker_blue.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://units/city_2.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://units/factory.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://eyecandy/flowers.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://units/barrack.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://units/city_3.xscn" type="PackedScene"></ext_resource>
-	<ext_resource path="res://units/city_1.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://eyecandy/grass.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://units/airport.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://units/city_3.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://terrain_tileset.xml" type="TileSet"></ext_resource>
+	<ext_resource path="res://units/tower.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://units/city_1.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://units/bunker_blue.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://eyecandy/flowers.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://units/forest_1.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://units/barrack.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://units/soldier_blue.xscn" type="PackedScene"></ext_resource>
 	<ext_resource path="res://units/soldier_red.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://units/factory.xscn" type="PackedScene"></ext_resource>
+	<ext_resource path="res://scripts/map_move.gd" type="Script"></ext_resource>
+	<ext_resource path="res://assets/particle/clouds.png" type="Texture"></ext_resource>
 	<main_resource>
 		<dictionary name="_bundled" shared="false">
 			<string> "names" </string>
-			<string_array  len="182">
-				<string> "terrain" </string>
-				<string> "TileMap" </string>
+			<string_array  len="138">
+				<string> "map_3" </string>
+				<string> "EmptyControl" </string>
 				<string> "_import_path" </string>
 				<string> "visibility/visible" </string>
 				<string> "visibility/opacity" </string>
 				<string> "visibility/self_opacity" </string>
 				<string> "visibility/behind_parent" </string>
+				<string> "margin/right" </string>
+				<string> "margin/bottom" </string>
+				<string> "focus_neighbour/left" </string>
+				<string> "focus_neighbour/top" </string>
+				<string> "focus_neighbour/right" </string>
+				<string> "focus_neighbour/bottom" </string>
+				<string> "focus/ignore_mouse" </string>
+				<string> "focus/stop_mouse" </string>
+				<string> "size_flags/horizontal" </string>
+				<string> "size_flags/vertical" </string>
+				<string> "size_flags/stretch_ratio" </string>
+				<string> "minsize" </string>
+				<string> "__meta__" </string>
+				<string> "underground" </string>
+				<string> "TileMap" </string>
 				<string> "transform/pos" </string>
 				<string> "transform/rot" </string>
 				<string> "transform/scale" </string>
@@ -42,191 +56,125 @@
 				<string> "collision/bounce" </string>
 				<string> "collision/layers" </string>
 				<string> "tile_data" </string>
-				<string> "__meta__" </string>
-				<string> "fauna" </string>
+				<string> "terrain" </string>
+				<string> "script/script" </string>
+				<string> "shakes_max" </string>
+				<string> "shake_time" </string>
+				<string> "shake_boundary" </string>
+				<string> "cloud_1_shadow" </string>
+				<string> "Sprite" </string>
+				<string> "texture" </string>
+				<string> "centered" </string>
+				<string> "offset" </string>
+				<string> "flip_h" </string>
+				<string> "flip_v" </string>
+				<string> "vframes" </string>
+				<string> "hframes" </string>
+				<string> "frame" </string>
+				<string> "modulate" </string>
+				<string> "region" </string>
+				<string> "region_rect" </string>
+				<string> "cloud_2_shadow" </string>
+				<string> "plants" </string>
 				<string> "YSort" </string>
 				<string> "sort/enabled" </string>
-				<string> "flowers 26" </string>
-				<string> "Sprite" </string>
-				<string> "frame" </string>
-				<string> "grass 65" </string>
-				<string> "flowers 12" </string>
-				<string> "flowers 4" </string>
-				<string> "flowers 8" </string>
-				<string> "flowers 7" </string>
-				<string> "flowers 9" </string>
-				<string> "flowers 14" </string>
-				<string> "flowers 16" </string>
-				<string> "flowers 18" </string>
-				<string> "grass 47" </string>
 				<string> "grass" </string>
-				<string> "grass 2" </string>
-				<string> "grass 3" </string>
-				<string> "grass 4" </string>
-				<string> "grass 6" </string>
-				<string> "grass 5" </string>
-				<string> "grass 8" </string>
-				<string> "grass 7" </string>
-				<string> "grass 10" </string>
-				<string> "grass 11" </string>
-				<string> "grass 12" </string>
-				<string> "grass 9" </string>
-				<string> "grass 13" </string>
-				<string> "grass 15" </string>
-				<string> "grass 16" </string>
-				<string> "grass 14" </string>
-				<string> "grass 18" </string>
-				<string> "grass 17" </string>
-				<string> "grass 20" </string>
-				<string> "grass 25" </string>
-				<string> "grass 22" </string>
-				<string> "grass 28" </string>
-				<string> "grass 38" </string>
-				<string> "grass 41" </string>
-				<string> "grass 43" </string>
-				<string> "grass 46" </string>
-				<string> "grass 48" </string>
-				<string> "grass 45" </string>
-				<string> "grass 50" </string>
-				<string> "grass 51" </string>
-				<string> "grass 49" </string>
-				<string> "grass 52" </string>
-				<string> "grass 44" </string>
-				<string> "grass 54" </string>
-				<string> "grass 53" </string>
-				<string> "grass 55" </string>
-				<string> "grass 58" </string>
-				<string> "grass 57" </string>
-				<string> "grass 61" </string>
-				<string> "grass 60" </string>
-				<string> "grass 62" </string>
-				<string> "grass 59" </string>
-				<string> "grass 63" </string>
-				<string> "grass 64" </string>
-				<string> "flowers 13" </string>
-				<string> "grass 56" </string>
-				<string> "flowers 10" </string>
-				<string> "flowers 5" </string>
-				<string> "flowers 19" </string>
-				<string> "flowers 15" </string>
-				<string> "flowers 20" </string>
-				<string> "flowers 17" </string>
-				<string> "flowers 6" </string>
-				<string> "flowers 22" </string>
-				<string> "flowers 2" </string>
-				<string> "flowers 23" </string>
-				<string> "grass 19" </string>
-				<string> "grass 26" </string>
-				<string> "grass 29" </string>
-				<string> "grass 27" </string>
-				<string> "grass 30" </string>
-				<string> "grass 31" </string>
-				<string> "grass 32" </string>
-				<string> "grass 33" </string>
-				<string> "grass 34" </string>
-				<string> "grass 35" </string>
-				<string> "grass 36" </string>
-				<string> "grass 37" </string>
-				<string> "grass 39" </string>
-				<string> "grass 40" </string>
-				<string> "grass 42" </string>
-				<string> "flowers 11" </string>
-				<string> "flowers 21" </string>
-				<string> "flowers 24" </string>
-				<string> "flowers 25" </string>
-				<string> "bunker_blue" </string>
-				<string> "bunker_red" </string>
+				<string> "flowers" </string>
 				<string> "forest" </string>
-				<string> "smoke_particles" </string>
-				<string> "forest 2" </string>
 				<string> "forest 3" </string>
 				<string> "forest 4" </string>
-				<string> "forest 5" </string>
-				<string> "forest_2" </string>
-				<string> "forest_ 3" </string>
-				<string> "forest_ 4" </string>
-				<string> "airport" </string>
-				<string> "barrack" </string>
-				<string> "barrack 2" </string>
-				<string> "factory" </string>
-				<string> "factory 2" </string>
-				<string> "forest 6" </string>
 				<string> "forest 7" </string>
+				<string> "forest 2" </string>
+				<string> "forest 5" </string>
+				<string> "forest 6" </string>
 				<string> "forest 8" </string>
 				<string> "forest 9" </string>
 				<string> "forest 10" </string>
-				<string> "forest_ 5" </string>
-				<string> "forest_ 6" </string>
-				<string> "forest_ 7" </string>
 				<string> "forest 11" </string>
-				<string> "forest 12" </string>
-				<string> "forest 13" </string>
-				<string> "forest 14" </string>
-				<string> "forest 15" </string>
-				<string> "forest 16" </string>
-				<string> "forest 17" </string>
-				<string> "forest 19" </string>
-				<string> "forest 20" </string>
-				<string> "forest 21" </string>
-				<string> "forest 22" </string>
-				<string> "forest 23" </string>
-				<string> "forest 24" </string>
-				<string> "forest 25" </string>
-				<string> "forest 26" </string>
-				<string> "forest 27" </string>
-				<string> "forest 28" </string>
-				<string> "forest_ 8" </string>
-				<string> "forest_ 9" </string>
-				<string> "forest_ 10" </string>
-				<string> "forest_ 11" </string>
+				<string> "grass 2" </string>
+				<string> "grass 3" </string>
+				<string> "grass 4" </string>
+				<string> "grass 5" </string>
+				<string> "grass 6" </string>
+				<string> "grass 7" </string>
+				<string> "flowers 2" </string>
+				<string> "flowers 3" </string>
+				<string> "flowers 4" </string>
+				<string> "flowers 5" </string>
+				<string> "flowers 6" </string>
+				<string> "flowers 7" </string>
+				<string> "flowers 8" </string>
+				<string> "flowers 9" </string>
+				<string> "flowers 10" </string>
+				<string> "flowers 11" </string>
+				<string> "flowers 12" </string>
+				<string> "flowers 13" </string>
+				<string> "flowers 14" </string>
+				<string> "flowers 15" </string>
+				<string> "flowers 16" </string>
+				<string> "flowers 17" </string>
+				<string> "flowers 18" </string>
+				<string> "flowers 19" </string>
+				<string> "flowers 20" </string>
+				<string> "flowers 21" </string>
+				<string> "flowers 22" </string>
+				<string> "flowers 23" </string>
+				<string> "flowers 24" </string>
+				<string> "flowers 25" </string>
+				<string> "flowers 26" </string>
+				<string> "flowers 27" </string>
+				<string> "flowers 28" </string>
+				<string> "flowers 29" </string>
+				<string> "flowers 30" </string>
+				<string> "flowers 31" </string>
+				<string> "flowers 32" </string>
+				<string> "flowers 33" </string>
+				<string> "flowers 34" </string>
+				<string> "flowers 35" </string>
+				<string> "grass 8" </string>
+				<string> "grass 9" </string>
+				<string> "flowers 36" </string>
+				<string> "airport" </string>
+				<string> "bunker_blue" </string>
+				<string> "spawn_point_position" </string>
+				<string> "bunker_red" </string>
+				<string> "barrack" </string>
+				<string> "barrack 2" </string>
+				<string> "tower" </string>
+				<string> "tower 2" </string>
 				<string> "city_1" </string>
-				<string> "city_ 2" </string>
-				<string> "city_ 4" </string>
-				<string> "city_ 6" </string>
-				<string> "city_2" </string>
-				<string> "city_ 7" </string>
-				<string> "city_ 8" </string>
 				<string> "city_3" </string>
-				<string> "city_ 10" </string>
-				<string> "city_ 11" </string>
-				<string> "city_ 12" </string>
-				<string> "city_ 13" </string>
-				<string> "city_ 14" </string>
-				<string> "city_4" </string>
-				<string> "city_4 2" </string>
-				<string> "city_4 3" </string>
-				<string> "city_statue" </string>
-				<string> "city_4 4" </string>
-				<string> "city_ 15" </string>
-				<string> "city_4 5" </string>
+				<string> "city_ 4" </string>
+				<string> "city_ 2" </string>
+				<string> "factory" </string>
 				<string> "soldier_blue" </string>
 				<string> "AnimatedSprite" </string>
 				<string> "soldier_red" </string>
 				<string> "soldier_blue 2" </string>
+				<string> "soldier_blue 3" </string>
 				<string> "soldier_red 2" </string>
+				<string> "soldier_red 3" </string>
+				<string> "cloud_1" </string>
+				<string> "cloud_2" </string>
+				<string> "cloud_ 2" </string>
+				<string> "cloud_ 3" </string>
+				<string> "cloud_ 4" </string>
 			</string_array>
 			<string> "version" </string>
 			<int> 1 </int>
 			<string> "conn_count" </string>
 			<int> 0 </int>
 			<string> "node_count" </string>
-			<int> 157 </int>
+			<int> 86 </int>
 			<string> "variants" </string>
-			<array  len="209" shared="false">
+			<array  len="146" shared="false">
 				<node_path> "" </node_path>
 				<bool> True </bool>
 				<real> 1 </real>
 				<bool> False </bool>
-				<vector2> 0, 0 </vector2>
-				<real> 0 </real>
-				<vector2> 1, 1 </vector2>
-				<int> 1 </int>
-				<resource  resource_type="TileSet" path="res://terrain_tileset.xml">  </resource>
-				<vector2> 32, 16 </vector2>
-				<int> 16 </int>
-				<matrix32> 1, 0, 0, 1, 0, 0 </matrix32>
+				<real> 40 </real>
 				<int> 2 </int>
-				<int_array  len="782"> 					1, 0, 2, 1, 3, 0, 4, 0, 5, 0, 6, 1, 7, 0, 8, 0, 9, 0, 10, 0, 11, 14, 12, 1, 13, 0, 14, 0, 15, 1, 16, 0, 19, 0, 20, 0, 21, 1, 22, 0, 65536, 0, 65537, 0, 65538, 1, 65539, 0, 65540, 0, 65541, 0, 65542, 1, 65543, 0, 65544, 0, 65545, 0, 65546, 0, 65547, 9, 65548, 1, 65549, 0, 65550, 0, 65551, 1, 65552, 0, 65553, 0, 65554, 0, 65555, 0, 65556, 0, 65557, 1, 65558, 0, 65559, 0, 131072, 0, 131073, 0, 131074, 1, 131075, 0, 131076, 19, 131077, 0, 131078, 1, 131079, 0, 131080, 0, 131081, 0, 131082, 0, 131083, 9, 131084, 1, 131085, 0, 131086, 0, 131087, 1, 131088, 0, 131089, 0, 131090, 0, 131091, 0, 131092, 0, 131093, 1, 131094, 0, 131095, 0, 196608, 0, 196609, 0, 196610, 1, 196611, 0, 196612, 0, 196613, 0, 196614, 1, 196615, 0, 196616, 0, 196617, 0, 196618, 0, 196619, 13, 196620, 16, 196621, 8, 196622, 10, 196623, 1, 196624, 0, 196625, 0, 196626, 0, 196627, 0, 196628, 0, 196629, 1, 196630, 0, 196631, 0, 196632, 0, 262144, 2, 262145, 2, 262146, 7, 262147, 2, 262148, 2, 262149, 2, 262150, 7, 262151, 2, 262152, 2, 262153, 2, 262154, 2, 262155, 4, 262156, 7, 262157, 3, 262158, 9, 262159, 0, 262160, 0, 262161, 0, 262162, 0, 262163, 0, 262164, 0, 262165, 1, 262166, 20, 262167, 0, 262168, 0, 327680, 0, 327681, 0, 327682, 1, 327683, 0, 327684, 0, 327685, 0, 327686, 1, 327687, 0, 327688, 0, 327689, 0, 327690, 0, 327691, 1, 327692, 3, 327693, 1, 327694, 14, 327695, 0, 327696, 0, 327697, 0, 327698, 0, 327699, 0, 327700, 0, 327701, 1, 327702, 0, 327703, 0, 327704, 0, 393216, 0, 393217, 0, 393218, 1, 393219, 0, 393220, 0, 393221, 0, 393222, 1, 393223, 0, 393224, 0, 393225, 0, 393226, 0, 393227, 1, 393228, 1, 393229, 1, 393230, 13, 393231, 8, 393232, 15, 393233, 8, 393234, 8, 393235, 15, 393236, 8, 393237, 16, 393238, 8, 393239, 15, 393240, 8, 393241, 8, 458752, 0, 458753, 0, 458754, 1, 458755, 0, 458756, 0, 458757, 0, 458758, 6, 458759, 2, 458760, 2, 458761, 2, 458762, 2, 458763, 7, 458764, 7, 458765, 5, 458766, 0, 458767, 0, 458768, 0, 458769, 0, 458770, 0, 458771, 0, 458772, 0, 458773, 1, 458774, 0, 458775, 0, 458776, 0, 524288, 0, 524289, 20, 524290, 1, 524291, 0, 524292, 0, 524293, 0, 524294, 0, 524295, 0, 524296, 0, 524297, 0, 524298, 0, 524299, 6, 524300, 7, 524301, 2, 524302, 2, 524303, 2, 524304, 2, 524305, 3, 524306, 0, 524307, 0, 524308, 0, 524309, 1, 524310, 0, 524311, 0, 524312, 0, 589824, 8, 589825, 8, 589826, 16, 589827, 8, 589828, 8, 589829, 8, 589830, 15, 589831, 8, 589832, 8, 589833, 10, 589834, 0, 589835, 18, 589836, 1, 589837, 0, 589838, 0, 589839, 0, 589840, 0, 589841, 1, 589842, 0, 589843, 0, 589844, 0, 589845, 1, 589846, 20, 589847, 0, 655360, 0, 655361, 0, 655362, 1, 655363, 0, 655364, 0, 655365, 0, 655366, 0, 655367, 0, 655368, 0, 655369, 9, 655370, 0, 655371, 1, 655372, 1, 655373, 0, 655374, 0, 655375, 0, 655376, 0, 655377, 1, 655378, 0, 655379, 0, 655380, 0, 655381, 1, 655382, 0, 655383, 0, 720896, 0, 720897, 0, 720898, 1, 720899, 0, 720900, 0, 720901, 0, 720902, 0, 720903, 0, 720904, 0, 720905, 9, 720906, 0, 720907, 6, 720908, 7, 720909, 2, 720910, 2, 720911, 2, 720912, 2, 720913, 7, 720914, 2, 720915, 2, 720916, 2, 720917, 7, 720918, 2, 720919, 2, 786432, 0, 786433, 0, 786434, 1, 786435, 0, 786436, 0, 786437, 0, 786438, 0, 786439, 0, 786440, 1, 786441, 13, 786442, 8, 786443, 8, 786444, 16, 786445, 15, 786446, 10, 786447, 0, 786448, 0, 786449, 1, 786450, 0, 786451, 0, 786452, 0, 786453, 1, 786454, 0, 786455, 0, 851968, 0, 851969, 20, 851970, 1, 851971, 0, 851972, 0, 851973, 0, 851974, 0, 851975, 0, 851976, 1, 851977, 0, 851978, 0, 851979, 0, 851980, 1, 851981, 0, 851982, 9, 851983, 0, 851984, 0, 851985, 1, 851986, 0, 851987, 0, 851988, 0, 851989, 1, 851990, 0, 851991, 0, 917504, 0, 917505, 0, 917506, 1, 917507, 0, 917508, 0, 917509, 0, 917510, 0, 917511, 0, 917512, 1, 917513, 0, 917514, 0, 917515, 0, 917516, 1, 917517, 0, 917518, 9, 917519, 0, 917520, 0, 917521, 1, 917522, 0, 917523, 0, 917524, 0, 917525, 1, 917526, 0, 917527, 0, 983041, 0, 983042, 1, 983043, 0, 983044, 0, 983047, 0, 983048, 1, 983049, 0, 983050, 0, 983051, 0, 983052, 1, 983053, 0, 983054, 9, 983055, 0, 983056, 0, 983057, 1, 983058, 0, 983059, 19, 983060, 0, 983061, 1, 983062, 0, 1048585, 0, 1048586, 0, 1048587, 0, 1048588, 1, 1048589, 0, 1048590, 14, 1048591, 0, 1114124, 1 </int_array>
+				<vector2> 0, 0 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -237,11 +185,11 @@
 							<string> "sources" </string>
 							<array  len="6" shared="false">
 								<string> "res://scripts/game_logic.gd" </string>
-								<string> "res://scripts/building.gd" </string>
-								<string> "res://scripts/unit_control.gd" </string>
+								<string> "res://scripts/hud_controller.gd" </string>
+								<string> "res://scripts/menu_controller.gd" </string>
 								<string> "res://scripts/terrain.gd" </string>
-								<string> "res://scripts/map_move.gd" </string>
 								<string> "res://scripts/action_controller.gd" </string>
+								<string> "res://scripts/map_move.gd" </string>
 							</array>
 						</dictionary>
 						<string> "2D" </string>
@@ -249,11 +197,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 1.50734 </real>
+							<real> 2.455473 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -264.901, -54.4027 </vector2>
+							<vector2> -214.3, 55.5795 </vector2>
 							<string> "snap" </string>
 							<int> 1 </int>
 						</dictionary>
@@ -360,134 +308,38 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
+				<real> 0 </real>
+				<vector2> 1, 1 </vector2>
+				<int> 1 </int>
+				<resource  resource_type="TileSet" path="res://terrain_tileset.xml">  </resource>
+				<vector2> 32, 16 </vector2>
+				<int> 16 </int>
+				<matrix32> 1, 0, 0, 1, 0, 0 </matrix32>
+				<int_array  len="70"> 					131083, 21, 196620, 21, 262157, 21, 327694, 21, 393233, 21, 458770, 21, 524302, 21, 524307, 21, 589837, 21, 589838, 21, 589840, 21, 589843, 21, 655372, 21, 655377, 21, 655378, 21, 655379, 21, 720898, 21, 720907, 21, 786435, 21, 786441, 21, 786442, 21, 851972, 21, 851977, 21, 917509, 21, 917513, 21, 983048, 21, 1048585, 21, 1114118, 21, 1114122, 21, 1179655, 21, 1179656, 21, 1179658, 21, 1245192, 21, 1245193, 21, 1245194, 21 </int_array>
+				<dictionary  shared="false">
+					<string> "_edit_lock_" </string>
+					<bool> True </bool>
+				</dictionary>
+				<int_array  len="310"> 					65543, 0, 65544, 1, 65545, 0, 65546, 0, 131078, 0, 131079, 0, 131080, 1, 131081, 0, 131082, 0, 131083, 0, 196613, 0, 196614, 0, 196615, 0, 196616, 1, 196617, 0, 196618, 0, 196619, 0, 196620, 0, 262148, 0, 262149, 0, 262150, 18, 262151, 18, 262152, 1, 262153, 0, 262154, 0, 262155, 0, 262156, 0, 262157, 0, 327683, 0, 327684, 0, 327685, 0, 327686, 18, 327687, 18, 327688, 1, 327689, 0, 327690, 0, 327691, 0, 327692, 0, 327693, 0, 327694, 0, 327695, 0, 327696, 0, 393218, 0, 393219, 0, 393220, 0, 393221, 0, 393222, 0, 393223, 18, 393224, 1, 393225, 0, 393226, 0, 393227, 0, 393228, 0, 393229, 0, 393230, 0, 393231, 18, 393232, 0, 393233, 0, 458753, 0, 458754, 0, 458755, 0, 458756, 0, 458757, 0, 458758, 18, 458759, 18, 458760, 7, 458761, 30, 458762, 23, 458763, 23, 458764, 23, 458765, 23, 458766, 23, 458767, 24, 458768, 0, 458769, 0, 458770, 0, 524289, 0, 524290, 0, 524291, 0, 524292, 0, 524293, 0, 524294, 18, 524295, 18, 524296, 1, 524297, 0, 524298, 0, 524299, 0, 524300, 0, 524301, 0, 524303, 22, 524304, 18, 524305, 0, 524306, 0, 589825, 0, 589826, 0, 589827, 0, 589828, 0, 589829, 0, 589830, 18, 589831, 18, 589832, 1, 589833, 0, 589834, 0, 589835, 0, 589840, 0, 589841, 0, 589842, 0, 655361, 0, 655362, 0, 655363, 0, 655364, 0, 655365, 0, 655366, 18, 655367, 18, 655368, 1, 655369, 0, 655370, 0, 720898, 2, 720899, 2, 720900, 2, 720901, 2, 720902, 2, 720903, 7, 720904, 5, 720905, 0, 786435, 0, 786436, 0, 786437, 0, 786438, 0, 786439, 29, 786440, 0, 851972, 0, 851973, 0, 851974, 0, 851975, 22, 851976, 0, 917509, 0, 917510, 0, 917511, 22, 983045, 0, 983046, 18, 983047, 27, 983048, 23, 1048581, 0, 1048582, 0, 1048583, 0, 1048584, 18, 1048585, 0, 1114118, 0, 1114119, 0, 1114120, 0, 1114121, 0, 1179655, 0, 1179656, 0, 1179657, 0 </int_array>
+				<resource  resource_type="Script" path="res://scripts/map_move.gd">  </resource>
+				<dictionary  shared="false">
+					<string> "_edit_lock_" </string>
+					<bool> True </bool>
+				</dictionary>
+				<int> 5 </int>
+				<real> 0.25 </real>
+				<vector2> -133, 81 </vector2>
+				<resource  resource_type="Texture" path="res://assets/particle/clouds.png">  </resource>
+				<color> 1, 1, 1, 1 </color>
+				<rect2> 0, 0, 0, 0 </rect2>
+				<vector2> 152, 134 </vector2>
+				<int> 3 </int>
 				<dictionary  shared="false">
 					<string> "_editor_collapsed" </string>
 					<bool> True </bool>
 				</dictionary>
-				<resource  resource_type="PackedScene" path="res://eyecandy/flowers.xscn">  </resource>
-				<vector2> -142, 87 </vector2>
-				<int> 37 </int>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> True </bool>
-							<string> "zoom" </string>
-							<real> 2.517532 </real>
-							<string> "use_snap" </string>
-							<bool> True </bool>
-							<string> "ofs" </string>
-							<vector2> -171.001, -115.478 </vector2>
-							<string> "snap" </string>
-							<int> 1 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<resource  resource_type="PackedScene" path="res://eyecandy/grass.scn">  </resource>
-				<vector2> 207, 152 </vector2>
+				<resource  resource_type="PackedScene" path="res://eyecandy/grass.xscn">  </resource>
+				<vector2> -48, 87 </vector2>
 				<int> 29 </int>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
@@ -608,112 +460,23 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<vector2> 193, 176 </vector2>
-				<vector2> 32, 191 </vector2>
-				<int> 31 </int>
-				<vector2> 129, 80 </vector2>
-				<vector2> 96, 79 </vector2>
-				<vector2> -126, 111 </vector2>
-				<vector2> 273, 218 </vector2>
-				<vector2> 144, 280 </vector2>
-				<vector2> 274, 183 </vector2>
-				<vector2> -79, 215 </vector2>
-				<vector2> -48, 72 </vector2>
-				<vector2> -33, 80 </vector2>
-				<vector2> -79, 55 </vector2>
-				<vector2> -65, 96 </vector2>
-				<vector2> -209, 120 </vector2>
-				<vector2> -177, 136 </vector2>
-				<vector2> -95, 111 </vector2>
-				<vector2> -160, 96 </vector2>
-				<vector2> -129, 111 </vector2>
-				<vector2> -33, 112 </vector2>
-				<vector2> -97, 144 </vector2>
-				<vector2> -79, 119 </vector2>
-				<vector2> 64, 48 </vector2>
-				<vector2> 31, 32 </vector2>
-				<vector2> 15, 8 </vector2>
-				<vector2> 64, 32 </vector2>
-				<vector2> 112, 88 </vector2>
-				<vector2> 63, 79 </vector2>
-				<vector2> 49, 169 </vector2>
-				<vector2> 80, 216 </vector2>
-				<vector2> 78, 200 </vector2>
-				<vector2> -1, 159 </vector2>
-				<vector2> 288, 224 </vector2>
-				<vector2> 319, 208 </vector2>
-				<vector2> 304, 168 </vector2>
-				<vector2> 193, 223 </vector2>
-				<vector2> 16, 247 </vector2>
-				<vector2> 304, 215 </vector2>
-				<vector2> 32, 223 </vector2>
-				<vector2> 96, 271 </vector2>
-				<vector2> 64, 223 </vector2>
-				<vector2> -17, 216 </vector2>
-				<vector2> 240, 199 </vector2>
-				<vector2> -48, 103 </vector2>
-				<vector2> 1, 127 </vector2>
-				<vector2> -49, 88 </vector2>
-				<vector2> -160, 79 </vector2>
-				<vector2> -208, 103 </vector2>
-				<vector2> 49, 55 </vector2>
-				<vector2> -160, 127 </vector2>
-				<vector2> 95, 80 </vector2>
-				<vector2> -128, 63 </vector2>
-				<vector2> 177, 120 </vector2>
-				<vector2> 159, 80 </vector2>
-				<vector2> 163, 225 </vector2>
-				<vector2> -128, 143 </vector2>
-				<vector2> -30, 81 </vector2>
-				<vector2> -64, 191 </vector2>
-				<vector2> 177, 167 </vector2>
-				<vector2> 289, 176 </vector2>
-				<vector2> 113, 87 </vector2>
-				<vector2> 128, 286 </vector2>
-				<vector2> -48, 87 </vector2>
-				<vector2> -47, 183 </vector2>
-				<vector2> 65, 128 </vector2>
-				<vector2> -80, 134 </vector2>
-				<vector2> 112, 72 </vector2>
-				<vector2> -2, 208 </vector2>
-				<vector2> -82, 185 </vector2>
-				<vector2> -33, 192 </vector2>
-				<vector2> 94, 239 </vector2>
-				<vector2> 161, 208 </vector2>
-				<vector2> 175, 168 </vector2>
-				<vector2> 223, 144 </vector2>
-				<vector2> 255, 192 </vector2>
-				<vector2> 174, 232 </vector2>
-				<vector2> 143, 280 </vector2>
-				<vector2> 208, 264 </vector2>
-				<vector2> 270, 216 </vector2>
-				<vector2> 321, 191 </vector2>
-				<vector2> 349, 176 </vector2>
-				<vector2> 19, 40 </vector2>
-				<vector2> 16, 150 </vector2>
-				<vector2> -47, 71 </vector2>
-				<vector2> -78, 55 </vector2>
-				<dictionary  shared="false">
-					<string> "_editor_collapsed" </string>
-					<bool> True </bool>
-				</dictionary>
-				<resource  resource_type="PackedScene" path="res://units/bunker_blue.xscn">  </resource>
-				<vector2> -176, 103 </vector2>
+				<resource  resource_type="PackedScene" path="res://eyecandy/flowers.xscn">  </resource>
+				<vector2> -79, 105 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "pixel_snap" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 1.32038 </real>
+							<real> 2.517532 </real>
 							<string> "use_snap" </string>
-							<bool> False </bool>
+							<bool> True </bool>
 							<string> "ofs" </string>
-							<vector2> -327.394, -67.7161 </vector2>
+							<vector2> -171.001, -115.478 </vector2>
 							<string> "snap" </string>
-							<int> 10 </int>
+							<int> 1 </int>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
@@ -790,22 +553,22 @@
 							<real> 0.628319 </real>
 							<string> "fov" </string>
 							<real> 45 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
 							<string> "viewport_mode" </string>
 							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> True </bool>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
 							<string> "show_origin" </string>
 							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
+							<string> "znear" </string>
+							<real> 0.1 </real>
 							<string> "default_srgb" </string>
 							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -818,255 +581,141 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<resource  resource_type="PackedScene" path="res://units/bunker_red.xscn">  </resource>
-				<vector2> 304, 199 </vector2>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> False </bool>
-							<string> "zoom" </string>
-							<real> 1.32038 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -327.394, -67.7161 </vector2>
-							<string> "snap" </string>
-							<int> 10 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<resource  resource_type="PackedScene" path="res://units/forest_1.xscn">  </resource>
-				<vector2> -16, 71 </vector2>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> False </bool>
-							<string> "zoom" </string>
-							<real> 1.32038 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -327.394, -67.7161 </vector2>
-							<string> "snap" </string>
-							<int> 10 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<int> 8 </int>
-				<vector2> 0, 79 </vector2>
-				<vector2> -32, 63 </vector2>
-				<vector2> 0, 47 </vector2>
-				<vector2> -32, 31 </vector2>
 				<resource  resource_type="PackedScene" path="res://units/forest_2.xscn">  </resource>
-				<vector2> -16, 87 </vector2>
+				<vector2> 64, 63 </vector2>
+				<dictionary  shared="false">
+					<string> "__editor_plugin_states__" </string>
+					<dictionary  shared="false">
+						<string> "Script" </string>
+						<dictionary  shared="false">
+							<string> "current" </string>
+							<int> 0 </int>
+							<string> "sources" </string>
+							<array  len="1" shared="false">
+								<string> "res://scripts/terrain.gd" </string>
+							</array>
+						</dictionary>
+						<string> "2D" </string>
+						<dictionary  shared="false">
+							<string> "pixel_snap" </string>
+							<bool> False </bool>
+							<string> "zoom" </string>
+							<real> 1.32038 </real>
+							<string> "use_snap" </string>
+							<bool> False </bool>
+							<string> "ofs" </string>
+							<vector2> -327.394, -67.7161 </vector2>
+							<string> "snap" </string>
+							<int> 10 </int>
+						</dictionary>
+						<string> "3D" </string>
+						<dictionary  shared="false">
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "viewports" </string>
+							<array  len="4" shared="false">
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> True </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+							</array>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
+							<string> "default_light" </string>
+							<bool> True </bool>
+							<string> "ambient_light_color" </string>
+							<color> 0.15, 0.15, 0.15, 1 </color>
+							<string> "show_grid" </string>
+							<bool> True </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
+							<string> "znear" </string>
+							<real> 0.1 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
+						</dictionary>
+					</dictionary>
+					<string> "__editor_run_settings__" </string>
+					<dictionary  shared="false">
+						<string> "custom_args" </string>
+						<string> "-l $scene" </string>
+						<string> "run_mode" </string>
+						<int> 0 </int>
+					</dictionary>
+					<string> "__editor_plugin_screen__" </string>
+					<string> "Script" </string>
+				</dictionary>
+				<vector2> -64, 63 </vector2>
+				<vector2> -96, 63 </vector2>
+				<vector2> 96, 63 </vector2>
+				<resource  resource_type="PackedScene" path="res://units/forest_1.xscn">  </resource>
+				<vector2> -32, 63 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -1167,22 +816,477 @@
 							</array>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
+							<string> "znear" </string>
+							<real> 0.1 </real>
 							<string> "show_origin" </string>
+							<bool> True </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
+						</dictionary>
+					</dictionary>
+					<string> "__editor_run_settings__" </string>
+					<dictionary  shared="false">
+						<string> "custom_args" </string>
+						<string> "-l $scene" </string>
+						<string> "run_mode" </string>
+						<int> 0 </int>
+					</dictionary>
+					<string> "__editor_plugin_screen__" </string>
+					<string> "2D" </string>
+				</dictionary>
+				<vector2> 0, 63 </vector2>
+				<vector2> 32, 63 </vector2>
+				<vector2> -112, 71 </vector2>
+				<vector2> -80, 71 </vector2>
+				<vector2> 80, 71 </vector2>
+				<vector2> 128, 79 </vector2>
+				<vector2> -95, 79 </vector2>
+				<vector2> 112, 87 </vector2>
+				<vector2> 65, 159 </vector2>
+				<vector2> 32, 144 </vector2>
+				<vector2> -95, 145 </vector2>
+				<vector2> -143, 151 </vector2>
+				<vector2> -94, 96 </vector2>
+				<vector2> -109, 104 </vector2>
+				<vector2> -93, 112 </vector2>
+				<int> 37 </int>
+				<vector2> -126, 96 </vector2>
+				<int> 31 </int>
+				<vector2> -127, 128 </vector2>
+				<vector2> -82, 120 </vector2>
+				<vector2> -111, 137 </vector2>
+				<vector2> -112, 87 </vector2>
+				<vector2> -144, 135 </vector2>
+				<vector2> -140, 121.5 </vector2>
+				<vector2> 1.125, 1.09375 </vector2>
+				<vector2> -111, 152 </vector2>
+				<vector2> -64, 79 </vector2>
+				<vector2> -64, 95 </vector2>
+				<vector2> -48, 71 </vector2>
+				<vector2> -80, 86 </vector2>
+				<vector2> -49, 86 </vector2>
+				<vector2> -15, 72 </vector2>
+				<vector2> 81, 120 </vector2>
+				<vector2> 62, 127 </vector2>
+				<vector2> 130, 113 </vector2>
+				<vector2> 82, 137 </vector2>
+				<vector2> 129, 97 </vector2>
+				<vector2> 145, 137 </vector2>
+				<vector2> 112, 104 </vector2>
+				<vector2> 145, 122 </vector2>
+				<vector2> 33, 159 </vector2>
+				<vector2> 111, 136 </vector2>
+				<vector2> 114, 152 </vector2>
+				<vector2> 97, 144 </vector2>
+				<vector2> 142, 103 </vector2>
+				<vector2> -176, 199 </vector2>
+				<vector2> -127, 158 </vector2>
+				<vector2> -157, 209 </vector2>
+				<vector2> 115, 200 </vector2>
+				<vector2> 16, 75 </vector2>
+				<int> 45 </int>
+				<vector2> -142, 154 </vector2>
+				<vector2> 177, 184 </vector2>
+				<dictionary  shared="false">
+					<string> "_editor_collapsed" </string>
+					<bool> True </bool>
+					<string> "_edit_lock_" </string>
+					<bool> True </bool>
+				</dictionary>
+				<resource  resource_type="PackedScene" path="res://units/airport.xscn">  </resource>
+				<vector2> 0, 95 </vector2>
+				<dictionary  shared="false">
+					<string> "__editor_plugin_states__" </string>
+					<dictionary  shared="false">
+						<string> "Script" </string>
+						<dictionary  shared="false">
+							<string> "current" </string>
+							<int> 0 </int>
+							<string> "sources" </string>
+							<array  len="1" shared="false">
+								<string> "res://scripts/building.gd" </string>
+							</array>
+						</dictionary>
+						<string> "2D" </string>
+						<dictionary  shared="false">
+							<string> "pixel_snap" </string>
+							<bool> True </bool>
+							<string> "zoom" </string>
+							<real> 6.816216 </real>
+							<string> "use_snap" </string>
+							<bool> False </bool>
+							<string> "ofs" </string>
+							<vector2> -70.6538, -19.3432 </vector2>
+							<string> "snap" </string>
+							<int> 1 </int>
+						</dictionary>
+						<string> "3D" </string>
+						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "viewports" </string>
+							<array  len="4" shared="false">
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> True </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+							</array>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "default_light" </string>
+							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
+							<string> "ambient_light_color" </string>
+							<color> 0.15, 0.15, 0.15, 1 </color>
+							<string> "show_grid" </string>
 							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
+						</dictionary>
+					</dictionary>
+					<string> "__editor_run_settings__" </string>
+					<dictionary  shared="false">
+						<string> "custom_args" </string>
+						<string> "-l $scene" </string>
+						<string> "run_mode" </string>
+						<int> 0 </int>
+					</dictionary>
+					<string> "__editor_plugin_screen__" </string>
+					<string> "2D" </string>
+				</dictionary>
+				<resource  resource_type="PackedScene" path="res://units/bunker_blue.xscn">  </resource>
+				<vector2> -144, 199 </vector2>
+				<dictionary  shared="false">
+					<string> "__editor_plugin_states__" </string>
+					<dictionary  shared="false">
+						<string> "Script" </string>
+						<dictionary  shared="false">
+							<string> "current" </string>
+							<int> 3 </int>
+							<string> "sources" </string>
+							<array  len="4" shared="false">
+								<string> "res://scripts/building.gd" </string>
+								<string> "res://scripts/terrain.gd" </string>
+								<string> "res://scripts/game_logic.gd" </string>
+								<string> "res://scripts/flag.gd" </string>
+							</array>
+						</dictionary>
+						<string> "2D" </string>
+						<dictionary  shared="false">
+							<string> "pixel_snap" </string>
+							<bool> True </bool>
+							<string> "zoom" </string>
+							<real> 25.866039 </real>
+							<string> "use_snap" </string>
+							<bool> False </bool>
+							<string> "ofs" </string>
+							<vector2> -6.95501, -8.36538 </vector2>
+							<string> "snap" </string>
+							<int> 10 </int>
+						</dictionary>
+						<string> "3D" </string>
+						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "viewports" </string>
+							<array  len="4" shared="false">
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> True </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+							</array>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "default_light" </string>
+							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
+							<string> "ambient_light_color" </string>
+							<color> 0.15, 0.15, 0.15, 1 </color>
+							<string> "show_grid" </string>
+							<bool> True </bool>
+							<string> "znear" </string>
+							<real> 0.1 </real>
+							<string> "show_origin" </string>
+							<bool> True </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
+						</dictionary>
+					</dictionary>
+					<string> "__editor_run_settings__" </string>
+					<dictionary  shared="false">
+						<string> "custom_args" </string>
+						<string> "-l $scene" </string>
+						<string> "run_mode" </string>
+						<int> 0 </int>
+					</dictionary>
+					<string> "__editor_plugin_screen__" </string>
+					<string> "2D" </string>
+				</dictionary>
+				<vector2> 0, -1 </vector2>
+				<resource  resource_type="PackedScene" path="res://units/bunker_red.xscn">  </resource>
+				<vector2> 144, 199 </vector2>
+				<dictionary  shared="false">
+					<string> "__editor_plugin_states__" </string>
+					<dictionary  shared="false">
+						<string> "Script" </string>
+						<dictionary  shared="false">
+							<string> "current" </string>
+							<int> 2 </int>
+							<string> "sources" </string>
+							<array  len="3" shared="false">
+								<string> "res://scripts/building.gd" </string>
+								<string> "res://scripts/game_logic.gd" </string>
+								<string> "res://scripts/action_controller.gd" </string>
+							</array>
+						</dictionary>
+						<string> "2D" </string>
+						<dictionary  shared="false">
+							<string> "pixel_snap" </string>
+							<bool> False </bool>
+							<string> "zoom" </string>
+							<real> 1.32038 </real>
+							<string> "use_snap" </string>
+							<bool> False </bool>
+							<string> "ofs" </string>
+							<vector2> -327.394, -67.7161 </vector2>
+							<string> "snap" </string>
+							<int> 10 </int>
+						</dictionary>
+						<string> "3D" </string>
+						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "viewports" </string>
+							<array  len="4" shared="false">
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> True </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+							</array>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "default_light" </string>
+							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
+							<string> "ambient_light_color" </string>
+							<color> 0.15, 0.15, 0.15, 1 </color>
+							<string> "show_grid" </string>
+							<bool> True </bool>
+							<string> "znear" </string>
+							<real> 0.1 </real>
+							<string> "show_origin" </string>
+							<bool> True </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -1195,131 +1299,9 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "Script" </string>
 				</dictionary>
-				<vector2> 16, 55 </vector2>
-				<vector2> -64, 47 </vector2>
-				<resource  resource_type="PackedScene" path="res://units/airport.xscn">  </resource>
-				<vector2> 48, 151 </vector2>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> True </bool>
-							<string> "zoom" </string>
-							<real> 2.707499 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -176.851, -65.874 </vector2>
-							<string> "snap" </string>
-							<int> 1 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
+				<vector2> -1, 0 </vector2>
 				<resource  resource_type="PackedScene" path="res://units/barrack.xscn">  </resource>
-				<vector2> -96, 63 </vector2>
+				<vector2> -160, 159 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -1328,16 +1310,20 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 2.707499 </real>
+							<real> 4.522017 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -176.851, -65.874 </vector2>
+							<vector2> -106.505, -38.7535 </vector2>
 							<string> "snap" </string>
 							<int> 1 </int>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -1405,12 +1391,8 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
 							<string> "default_light" </string>
 							<bool> True </bool>
 							<string> "viewport_mode" </string>
@@ -1439,182 +1421,172 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<vector2> 224, 239 </vector2>
-				<resource  resource_type="PackedScene" path="res://units/factory.xscn">  </resource>
-				<vector2> 48, 39 </vector2>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> True </bool>
-							<string> "zoom" </string>
-							<real> 2.707499 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -176.851, -65.874 </vector2>
-							<string> "snap" </string>
-							<int> 1 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<vector2> 80, 263 </vector2>
-				<vector2> 128, 255 </vector2>
-				<vector2> 128, 223 </vector2>
-				<vector2> 144, 231 </vector2>
-				<vector2> 160, 239 </vector2>
-				<vector2> 160, 271 </vector2>
-				<vector2> 144, 215 </vector2>
-				<vector2> 112, 247 </vector2>
-				<vector2> 192, 255 </vector2>
-				<vector2> 80, 183 </vector2>
-				<vector2> 48, 119 </vector2>
-				<vector2> 64, 111 </vector2>
-				<vector2> 96, 95 </vector2>
-				<vector2> 64, 191 </vector2>
-				<vector2> 48, 183 </vector2>
-				<vector2> -16, 167 </vector2>
-				<vector2> 256, 175 </vector2>
-				<vector2> 240, 183 </vector2>
-				<vector2> 224, 175 </vector2>
-				<vector2> 272, 167 </vector2>
-				<vector2> -128, 127 </vector2>
-				<vector2> -112, 119 </vector2>
-				<vector2> -144, 135 </vector2>
-				<vector2> -96, 127 </vector2>
-				<vector2> -112, 135 </vector2>
-				<vector2> 240, 167 </vector2>
-				<vector2> -32, 143 </vector2>
+				<vector2> 1, 0 </vector2>
 				<vector2> 160, 159 </vector2>
+				<resource  resource_type="PackedScene" path="res://units/tower.xscn">  </resource>
+				<vector2> -144, 87 </vector2>
+				<dictionary  shared="false">
+					<string> "__editor_plugin_states__" </string>
+					<dictionary  shared="false">
+						<string> "Script" </string>
+						<dictionary  shared="false">
+							<string> "current" </string>
+							<int> 0 </int>
+							<string> "sources" </string>
+							<array  len="1" shared="false">
+								<string> "res://scripts/flag.gd" </string>
+							</array>
+						</dictionary>
+						<string> "2D" </string>
+						<dictionary  shared="false">
+							<string> "pixel_snap" </string>
+							<bool> True </bool>
+							<string> "zoom" </string>
+							<real> 8.339598 </real>
+							<string> "use_snap" </string>
+							<bool> False </bool>
+							<string> "ofs" </string>
+							<vector2> -62.173, -49.4519 </vector2>
+							<string> "snap" </string>
+							<int> 1 </int>
+						</dictionary>
+						<string> "3D" </string>
+						<dictionary  shared="false">
+							<string> "fov" </string>
+							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
+							<string> "viewports" </string>
+							<array  len="4" shared="false">
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> True </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+								<dictionary  shared="false">
+									<string> "distance" </string>
+									<real> 4 </real>
+									<string> "x_rot" </string>
+									<real> 0 </real>
+									<string> "y_rot" </string>
+									<real> 0 </real>
+									<string> "listener" </string>
+									<bool> False </bool>
+									<string> "use_environment" </string>
+									<bool> False </bool>
+									<string> "use_orthogonal" </string>
+									<bool> False </bool>
+									<string> "pos" </string>
+									<vector3> 0, 0, 0 </vector3>
+								</dictionary>
+							</array>
+							<string> "deflight_rot_y" </string>
+							<real> 0.628319 </real>
+							<string> "default_light" </string>
+							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
+							<string> "ambient_light_color" </string>
+							<color> 0.15, 0.15, 0.15, 1 </color>
+							<string> "show_grid" </string>
+							<bool> True </bool>
+							<string> "znear" </string>
+							<real> 0.1 </real>
+							<string> "show_origin" </string>
+							<bool> True </bool>
+							<string> "deflight_rot_x" </string>
+							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
+						</dictionary>
+					</dictionary>
+					<string> "__editor_run_settings__" </string>
+					<dictionary  shared="false">
+						<string> "custom_args" </string>
+						<string> "-l $scene" </string>
+						<string> "run_mode" </string>
+						<int> 0 </int>
+					</dictionary>
+					<string> "__editor_plugin_screen__" </string>
+					<string> "2D" </string>
+				</dictionary>
+				<vector2> 144, 87 </vector2>
 				<resource  resource_type="PackedScene" path="res://units/city_1.xscn">  </resource>
-				<vector2> 112, 199 </vector2>
+				<vector2> 80, 103 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
+						<string> "Script" </string>
+						<dictionary  shared="false">
+							<string> "current" </string>
+							<int> 0 </int>
+							<string> "sources" </string>
+							<array  len="1" shared="false">
+								<string> "res://scripts/terrain.gd" </string>
+							</array>
+						</dictionary>
 						<string> "2D" </string>
 						<dictionary  shared="false">
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 1.629012 </real>
+							<real> 1.108033 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -274.83, -151.386 </vector2>
+							<vector2> -309.893, -134.368 </vector2>
 							<string> "snap" </string>
 							<int> 1 </int>
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
 							<string> "fov" </string>
 							<real> 45 </real>
+							<string> "zfar" </string>
+							<real> 500 </real>
 							<string> "viewports" </string>
 							<array  len="4" shared="false">
 								<dictionary  shared="false">
@@ -1682,146 +1654,24 @@
 									<vector3> 0, 0, 0 </vector3>
 								</dictionary>
 							</array>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<vector2> 16, 103 </vector2>
-				<vector2> -112, 167 </vector2>
-				<vector2> 240, 135 </vector2>
-				<resource  resource_type="PackedScene" path="res://units/city_2.xscn">  </resource>
-				<vector2> -64, 175 </vector2>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> True </bool>
-							<string> "zoom" </string>
-							<real> 1.629012 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -274.83, -151.386 </vector2>
-							<string> "snap" </string>
-							<int> 1 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -1834,10 +1684,8 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<vector2> 192, 127 </vector2>
-				<vector2> 112, 167 </vector2>
 				<resource  resource_type="PackedScene" path="res://units/city_3.xscn">  </resource>
-				<vector2> 32, 143 </vector2>
+				<vector2> 0, 79 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -1856,132 +1704,6 @@
 						</dictionary>
 						<string> "3D" </string>
 						<dictionary  shared="false">
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<vector2> 98, 192 </vector2>
-				<vector2> 96, 207 </vector2>
-				<vector2> 32, 95 </vector2>
-				<vector2> 32, 111 </vector2>
-				<vector2> -16, 119 </vector2>
-				<resource  resource_type="PackedScene" path="res://units/city_4.xscn">  </resource>
-				<vector2> 144, 183 </vector2>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> True </bool>
-							<string> "zoom" </string>
-							<real> 2.720749 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -151.362, -42.1914 </vector2>
-							<string> "snap" </string>
-							<int> 1 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
 							<string> "fov" </string>
 							<real> 45 </real>
 							<string> "zfar" </string>
@@ -2055,22 +1777,22 @@
 							</array>
 							<string> "deflight_rot_y" </string>
 							<real> 0.628319 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
 							<string> "default_light" </string>
 							<bool> True </bool>
+							<string> "viewport_mode" </string>
+							<int> 1 </int>
 							<string> "ambient_light_color" </string>
 							<color> 0.15, 0.15, 0.15, 1 </color>
 							<string> "show_grid" </string>
 							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
 							<string> "znear" </string>
 							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
+							<string> "show_origin" </string>
+							<bool> True </bool>
 							<string> "deflight_rot_x" </string>
 							<real> 0.942478 </real>
+							<string> "default_srgb" </string>
+							<bool> False </bool>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -2083,8 +1805,10 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<resource  resource_type="PackedScene" path="res://units/city_5.xscn">  </resource>
-				<vector2> -48, 151 </vector2>
+				<vector2> 48, 71 </vector2>
+				<vector2> 64, 79 </vector2>
+				<resource  resource_type="PackedScene" path="res://units/factory.xscn">  </resource>
+				<vector2> -32, 95 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -2093,254 +1817,11 @@
 							<string> "pixel_snap" </string>
 							<bool> True </bool>
 							<string> "zoom" </string>
-							<real> 2.720749 </real>
+							<real> 5.551851 </real>
 							<string> "use_snap" </string>
 							<bool> False </bool>
 							<string> "ofs" </string>
-							<vector2> -151.362, -42.1914 </vector2>
-							<string> "snap" </string>
-							<int> 1 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_show_subtree" </string>
-					<bool> True </bool>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<vector2> 176, 151 </vector2>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> True </bool>
-							<string> "zoom" </string>
-							<real> 2.720749 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -151.362, -42.1914 </vector2>
-							<string> "snap" </string>
-							<int> 1 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<resource  resource_type="PackedScene" path="res://units/city_statue.xscn">  </resource>
-				<vector2> 112, 135 </vector2>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> True </bool>
-							<string> "zoom" </string>
-							<real> 1.796206 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -329.712, -217.263 </vector2>
+							<vector2> -88.1047, -31.0567 </vector2>
 							<string> "snap" </string>
 							<int> 1 </int>
 						</dictionary>
@@ -2435,128 +1916,6 @@
 							<real> 0.942478 </real>
 							<string> "default_srgb" </string>
 							<bool> False </bool>
-						</dictionary>
-					</dictionary>
-					<string> "__editor_run_settings__" </string>
-					<dictionary  shared="false">
-						<string> "custom_args" </string>
-						<string> "-l $scene" </string>
-						<string> "run_mode" </string>
-						<int> 0 </int>
-					</dictionary>
-					<string> "__editor_plugin_screen__" </string>
-					<string> "2D" </string>
-				</dictionary>
-				<vector2> 80, 119 </vector2>
-				<vector2> 112, 103 </vector2>
-				<vector2> 16, 135 </vector2>
-				<dictionary  shared="false">
-					<string> "__editor_plugin_states__" </string>
-					<dictionary  shared="false">
-						<string> "2D" </string>
-						<dictionary  shared="false">
-							<string> "pixel_snap" </string>
-							<bool> True </bool>
-							<string> "zoom" </string>
-							<real> 2.720749 </real>
-							<string> "use_snap" </string>
-							<bool> False </bool>
-							<string> "ofs" </string>
-							<vector2> -151.362, -42.1914 </vector2>
-							<string> "snap" </string>
-							<int> 1 </int>
-						</dictionary>
-						<string> "3D" </string>
-						<dictionary  shared="false">
-							<string> "fov" </string>
-							<real> 45 </real>
-							<string> "zfar" </string>
-							<real> 500 </real>
-							<string> "viewports" </string>
-							<array  len="4" shared="false">
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> True </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-								<dictionary  shared="false">
-									<string> "distance" </string>
-									<real> 4 </real>
-									<string> "x_rot" </string>
-									<real> 0 </real>
-									<string> "y_rot" </string>
-									<real> 0 </real>
-									<string> "listener" </string>
-									<bool> False </bool>
-									<string> "use_environment" </string>
-									<bool> False </bool>
-									<string> "use_orthogonal" </string>
-									<bool> False </bool>
-									<string> "pos" </string>
-									<vector3> 0, 0, 0 </vector3>
-								</dictionary>
-							</array>
-							<string> "deflight_rot_y" </string>
-							<real> 0.628319 </real>
-							<string> "viewport_mode" </string>
-							<int> 1 </int>
-							<string> "default_light" </string>
-							<bool> True </bool>
-							<string> "ambient_light_color" </string>
-							<color> 0.15, 0.15, 0.15, 1 </color>
-							<string> "show_grid" </string>
-							<bool> True </bool>
-							<string> "show_origin" </string>
-							<bool> True </bool>
-							<string> "znear" </string>
-							<real> 0.1 </real>
-							<string> "default_srgb" </string>
-							<bool> False </bool>
-							<string> "deflight_rot_x" </string>
-							<real> 0.942478 </real>
 						</dictionary>
 					</dictionary>
 					<string> "__editor_run_settings__" </string>
@@ -2570,7 +1929,7 @@
 					<string> "2D" </string>
 				</dictionary>
 				<resource  resource_type="PackedScene" path="res://units/soldier_blue.xscn">  </resource>
-				<vector2> -162, 115 </vector2>
+				<vector2> -112, 203 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -2706,7 +2065,7 @@
 					<string> "Script" </string>
 				</dictionary>
 				<resource  resource_type="PackedScene" path="res://units/soldier_red.xscn">  </resource>
-				<vector2> 288, 194 </vector2>
+				<vector2> 144, 218 </vector2>
 				<dictionary  shared="false">
 					<string> "__editor_plugin_states__" </string>
 					<dictionary  shared="false">
@@ -2826,11 +2185,19 @@
 					<string> "__editor_plugin_screen__" </string>
 					<string> "2D" </string>
 				</dictionary>
-				<vector2> -178, 122 </vector2>
-				<vector2> 271, 201 </vector2>
+				<vector2> -128, 211 </vector2>
+				<vector2> -144, 219 </vector2>
+				<vector2> 161, 210 </vector2>
+				<vector2> 176, 203 </vector2>
+				<vector2> -137, 52 </vector2>
+				<int> 0 </int>
+				<vector2> 152, 108 </vector2>
+				<vector2> 9, 216 </vector2>
+				<vector2> -5, 227 </vector2>
+				<vector2> -42, 195 </vector2>
 			</array>
 			<string> "nodes" </string>
-			<int_array  len="2293"> 				-1, -1, 1, 0, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 10, 7, 11, 8, 12, 9, 13, 10, 14, 11, 15, 12, 16, 2, 17, 5, 18, 7, 19, 13, 20, 14, 0, 0, 0, 22, 21, -1, 10, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 23, 1, 20, 15, 0, 1, 0, 25, 24, 16, 4, 2, 0, 7, 17, 26, 18, 20, 19, 0, 1, 0, 25, 27, 20, 4, 2, 0, 7, 21, 26, 22, 20, 23, 0, 1, 0, 25, 28, 16, 3, 2, 0, 7, 24, 20, 19, 0, 1, 0, 25, 29, 16, 4, 2, 0, 7, 25, 26, 26, 20, 19, 0, 1, 0, 25, 30, 16, 3, 2, 0, 7, 27, 20, 19, 0, 1, 0, 25, 31, 16, 4, 2, 0, 7, 28, 26, 26, 20, 19, 0, 1, 0, 25, 32, 16, 3, 2, 0, 7, 29, 20, 19, 0, 1, 0, 25, 33, 16, 3, 2, 0, 7, 30, 20, 19, 0, 1, 0, 25, 34, 16, 4, 2, 0, 7, 31, 26, 26, 20, 19, 0, 1, 0, 25, 35, 16, 4, 2, 0, 7, 32, 26, 18, 20, 19, 0, 1, 0, 25, 36, 20, 4, 2, 0, 7, 33, 26, 22, 20, 23, 0, 1, 0, 25, 37, 20, 3, 2, 0, 7, 34, 20, 23, 0, 1, 0, 25, 38, 20, 3, 2, 0, 7, 35, 20, 23, 0, 1, 0, 25, 39, 20, 3, 2, 0, 7, 36, 20, 23, 0, 1, 0, 25, 40, 20, 3, 2, 0, 7, 37, 20, 23, 0, 1, 0, 25, 41, 20, 3, 2, 0, 7, 38, 20, 23, 0, 1, 0, 25, 42, 20, 3, 2, 0, 7, 39, 20, 23, 0, 1, 0, 25, 43, 20, 3, 2, 0, 7, 40, 20, 23, 0, 1, 0, 25, 44, 20, 3, 2, 0, 7, 41, 20, 23, 0, 1, 0, 25, 45, 20, 3, 2, 0, 7, 42, 20, 23, 0, 1, 0, 25, 46, 20, 3, 2, 0, 7, 43, 20, 23, 0, 1, 0, 25, 47, 20, 3, 2, 0, 7, 44, 20, 23, 0, 1, 0, 25, 48, 20, 3, 2, 0, 7, 45, 20, 23, 0, 1, 0, 25, 49, 20, 3, 2, 0, 7, 46, 20, 23, 0, 1, 0, 25, 50, 20, 3, 2, 0, 7, 47, 20, 23, 0, 1, 0, 25, 51, 20, 3, 2, 0, 7, 48, 20, 23, 0, 1, 0, 25, 52, 20, 3, 2, 0, 7, 49, 20, 23, 0, 1, 0, 25, 53, 20, 3, 2, 0, 7, 50, 20, 23, 0, 1, 0, 25, 54, 20, 3, 2, 0, 7, 51, 20, 23, 0, 1, 0, 25, 55, 20, 3, 2, 0, 7, 52, 20, 23, 0, 1, 0, 25, 56, 20, 3, 2, 0, 7, 53, 20, 23, 0, 1, 0, 25, 57, 20, 3, 2, 0, 7, 54, 20, 23, 0, 1, 0, 25, 58, 20, 3, 2, 0, 7, 55, 20, 23, 0, 1, 0, 25, 59, 20, 3, 2, 0, 7, 56, 20, 23, 0, 1, 0, 25, 60, 20, 3, 2, 0, 7, 57, 20, 23, 0, 1, 0, 25, 61, 20, 4, 2, 0, 7, 58, 26, 22, 20, 23, 0, 1, 0, 25, 62, 20, 4, 2, 0, 7, 59, 26, 22, 20, 23, 0, 1, 0, 25, 63, 20, 4, 2, 0, 7, 60, 26, 22, 20, 23, 0, 1, 0, 25, 64, 20, 4, 2, 0, 7, 61, 26, 22, 20, 23, 0, 1, 0, 25, 65, 20, 4, 2, 0, 7, 62, 26, 22, 20, 23, 0, 1, 0, 25, 66, 20, 4, 2, 0, 7, 63, 26, 22, 20, 23, 0, 1, 0, 25, 67, 20, 4, 2, 0, 7, 64, 26, 22, 20, 23, 0, 1, 0, 25, 68, 20, 4, 2, 0, 7, 65, 26, 22, 20, 23, 0, 1, 0, 25, 69, 20, 4, 2, 0, 7, 66, 26, 22, 20, 23, 0, 1, 0, 25, 70, 20, 4, 2, 0, 7, 67, 26, 22, 20, 23, 0, 1, 0, 25, 71, 20, 4, 2, 0, 7, 68, 26, 22, 20, 23, 0, 1, 0, 25, 72, 20, 4, 2, 0, 7, 69, 26, 22, 20, 23, 0, 1, 0, 25, 73, 20, 4, 2, 0, 7, 70, 26, 22, 20, 23, 0, 1, 0, 25, 74, 20, 4, 2, 0, 7, 71, 26, 22, 20, 23, 0, 1, 0, 25, 75, 20, 4, 2, 0, 7, 72, 26, 22, 20, 23, 0, 1, 0, 25, 76, 20, 4, 2, 0, 7, 73, 26, 22, 20, 23, 0, 1, 0, 25, 77, 20, 4, 2, 0, 7, 74, 26, 22, 20, 23, 0, 1, 0, 25, 78, 20, 4, 2, 0, 7, 75, 26, 22, 20, 23, 0, 1, 0, 25, 79, 20, 4, 2, 0, 7, 76, 26, 22, 20, 23, 0, 1, 0, 25, 80, 20, 4, 2, 0, 7, 77, 26, 22, 20, 23, 0, 1, 0, 25, 81, 16, 3, 2, 0, 7, 78, 20, 19, 0, 1, 0, 25, 82, 20, 4, 2, 0, 7, 79, 26, 22, 20, 23, 0, 1, 0, 25, 83, 16, 3, 2, 0, 7, 80, 20, 19, 0, 1, 0, 25, 84, 16, 4, 2, 0, 7, 81, 26, 26, 20, 19, 0, 1, 0, 25, 85, 16, 4, 2, 0, 7, 82, 26, 18, 20, 19, 0, 1, 0, 25, 86, 16, 4, 2, 0, 7, 83, 26, 26, 20, 19, 0, 1, 0, 25, 87, 16, 4, 2, 0, 7, 84, 26, 18, 20, 19, 0, 1, 0, 25, 88, 16, 4, 2, 0, 7, 85, 26, 18, 20, 19, 0, 1, 0, 25, 89, 16, 4, 2, 0, 7, 86, 26, 26, 20, 19, 0, 1, 0, 25, 90, 16, 4, 2, 0, 7, 87, 26, 18, 20, 19, 0, 1, 0, 25, 91, 16, 3, 2, 0, 7, 88, 20, 19, 0, 1, 0, 25, 92, 16, 4, 2, 0, 7, 89, 26, 18, 20, 19, 0, 1, 0, 25, 93, 20, 3, 2, 0, 7, 90, 20, 23, 0, 1, 0, 25, 94, 20, 3, 2, 0, 7, 91, 20, 23, 0, 1, 0, 25, 95, 20, 3, 2, 0, 7, 92, 20, 23, 0, 1, 0, 25, 96, 20, 3, 2, 0, 7, 93, 20, 23, 0, 1, 0, 25, 97, 20, 3, 2, 0, 7, 94, 20, 23, 0, 1, 0, 25, 98, 20, 3, 2, 0, 7, 95, 20, 23, 0, 1, 0, 25, 99, 20, 3, 2, 0, 7, 96, 20, 23, 0, 1, 0, 25, 100, 20, 3, 2, 0, 7, 97, 20, 23, 0, 1, 0, 25, 101, 20, 3, 2, 0, 7, 98, 20, 23, 0, 1, 0, 25, 102, 20, 3, 2, 0, 7, 99, 20, 23, 0, 1, 0, 25, 103, 20, 3, 2, 0, 7, 100, 20, 23, 0, 1, 0, 25, 104, 20, 3, 2, 0, 7, 101, 20, 23, 0, 1, 0, 25, 105, 20, 3, 2, 0, 7, 102, 20, 23, 0, 1, 0, 25, 106, 20, 3, 2, 0, 7, 103, 20, 23, 0, 1, 0, 25, 107, 20, 3, 2, 0, 7, 104, 20, 23, 0, 1, 0, 25, 108, 16, 3, 2, 0, 7, 105, 20, 19, 0, 1, 0, 25, 109, 16, 4, 2, 0, 7, 106, 26, 18, 20, 19, 0, 1, 0, 25, 110, 16, 4, 2, 0, 7, 107, 26, 18, 20, 19, 0, 1, 0, 25, 111, 16, 4, 2, 0, 7, 108, 26, 18, 20, 19, 0, 0, 0, 22, 22, -1, 10, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 5, 9, 6, 23, 1, 20, 109, 0, 88, 0, 25, 112, 110, 3, 2, 0, 7, 111, 20, 112, 0, 88, 0, 25, 113, 113, 3, 2, 0, 7, 114, 20, 115, 0, 88, 0, 25, 114, 116, 4, 2, 0, 7, 117, 20, 118, 115, 119, 0, 88, 0, 25, 116, 116, 4, 2, 0, 7, 120, 20, 118, 115, 119, 0, 88, 0, 25, 117, 116, 4, 2, 0, 7, 121, 20, 118, 115, 119, 0, 88, 0, 25, 118, 116, 4, 2, 0, 7, 122, 20, 118, 115, 119, 0, 88, 0, 25, 119, 116, 4, 2, 0, 7, 123, 20, 118, 115, 119, 0, 88, 0, 25, 120, 124, 4, 2, 0, 7, 125, 20, 126, 115, 119, 0, 88, 0, 25, 121, 124, 4, 2, 0, 7, 127, 20, 126, 115, 119, 0, 88, 0, 25, 122, 124, 4, 2, 0, 7, 128, 20, 126, 115, 119, 0, 88, 0, 25, 123, 129, 3, 2, 0, 7, 130, 20, 131, 0, 88, 0, 25, 124, 132, 3, 2, 0, 7, 133, 20, 134, 0, 88, 0, 25, 125, 132, 3, 2, 0, 7, 135, 20, 134, 0, 88, 0, 25, 126, 136, 3, 2, 0, 7, 137, 20, 138, 0, 88, 0, 25, 127, 136, 3, 2, 0, 7, 139, 20, 138, 0, 88, 0, 25, 128, 116, 4, 2, 0, 7, 140, 20, 118, 115, 119, 0, 88, 0, 25, 129, 116, 4, 2, 0, 7, 141, 20, 118, 115, 119, 0, 88, 0, 25, 130, 116, 4, 2, 0, 7, 142, 20, 118, 115, 119, 0, 88, 0, 25, 131, 116, 4, 2, 0, 7, 143, 20, 118, 115, 119, 0, 88, 0, 25, 132, 116, 4, 2, 0, 7, 144, 20, 118, 115, 119, 0, 88, 0, 25, 133, 124, 4, 2, 0, 7, 145, 20, 126, 115, 119, 0, 88, 0, 25, 134, 124, 4, 2, 0, 7, 146, 20, 126, 115, 119, 0, 88, 0, 25, 135, 124, 4, 2, 0, 7, 147, 20, 126, 115, 119, 0, 88, 0, 25, 136, 116, 4, 2, 0, 7, 148, 20, 118, 115, 119, 0, 88, 0, 25, 137, 116, 4, 2, 0, 7, 149, 20, 118, 115, 119, 0, 88, 0, 25, 138, 116, 4, 2, 0, 7, 150, 20, 118, 115, 119, 0, 88, 0, 25, 139, 116, 4, 2, 0, 7, 151, 20, 118, 115, 119, 0, 88, 0, 25, 140, 116, 4, 2, 0, 7, 152, 20, 118, 115, 119, 0, 88, 0, 25, 141, 116, 4, 2, 0, 7, 153, 20, 118, 115, 119, 0, 88, 0, 25, 142, 116, 4, 2, 0, 7, 154, 20, 118, 115, 119, 0, 88, 0, 25, 143, 116, 4, 2, 0, 7, 155, 20, 118, 115, 119, 0, 88, 0, 25, 144, 116, 4, 2, 0, 7, 156, 20, 118, 115, 119, 0, 88, 0, 25, 145, 116, 4, 2, 0, 7, 157, 20, 118, 115, 119, 0, 88, 0, 25, 146, 116, 4, 2, 0, 7, 158, 20, 118, 115, 119, 0, 88, 0, 25, 147, 116, 4, 2, 0, 7, 159, 20, 118, 115, 119, 0, 88, 0, 25, 148, 116, 4, 2, 0, 7, 160, 20, 118, 115, 119, 0, 88, 0, 25, 149, 116, 4, 2, 0, 7, 161, 20, 118, 115, 119, 0, 88, 0, 25, 150, 116, 4, 2, 0, 7, 161, 20, 118, 115, 119, 0, 88, 0, 25, 151, 116, 4, 2, 0, 7, 162, 20, 118, 115, 119, 0, 88, 0, 25, 152, 116, 4, 2, 0, 7, 162, 20, 118, 115, 119, 0, 88, 0, 25, 153, 124, 4, 2, 0, 7, 163, 20, 126, 115, 119, 0, 88, 0, 25, 154, 124, 4, 2, 0, 7, 164, 20, 126, 115, 119, 0, 88, 0, 25, 155, 124, 4, 2, 0, 7, 165, 20, 126, 115, 119, 0, 88, 0, 25, 156, 124, 4, 2, 0, 7, 166, 20, 126, 115, 119, 0, 88, 0, 25, 157, 167, 4, 2, 0, 7, 168, 20, 169, 115, 119, 0, 88, 0, 25, 158, 167, 4, 2, 0, 7, 170, 20, 169, 115, 119, 0, 88, 0, 25, 159, 167, 4, 2, 0, 7, 171, 20, 169, 115, 119, 0, 88, 0, 25, 160, 167, 4, 2, 0, 7, 172, 20, 169, 115, 119, 0, 88, 0, 25, 161, 173, 4, 2, 0, 7, 174, 20, 175, 115, 119, 0, 88, 0, 25, 162, 173, 4, 2, 0, 7, 176, 20, 175, 115, 119, 0, 88, 0, 25, 163, 173, 4, 2, 0, 7, 177, 20, 175, 115, 119, 0, 88, 0, 25, 164, 178, 4, 2, 0, 7, 179, 20, 180, 115, 119, 0, 88, 0, 25, 165, 178, 4, 2, 0, 7, 181, 20, 180, 115, 119, 0, 88, 0, 25, 166, 178, 4, 2, 0, 7, 182, 20, 180, 115, 119, 0, 88, 0, 25, 167, 178, 4, 2, 0, 7, 183, 20, 180, 115, 119, 0, 88, 0, 25, 168, 178, 4, 2, 0, 7, 184, 20, 180, 115, 119, 0, 88, 0, 25, 169, 173, 4, 2, 0, 7, 185, 20, 175, 115, 119, 0, 88, 0, 25, 170, 186, 4, 2, 0, 7, 187, 20, 188, 115, 119, 0, 88, 0, 25, 171, 189, 4, 2, 0, 7, 190, 20, 191, 115, 119, 0, 88, 0, 25, 172, 186, 4, 2, 0, 7, 192, 20, 193, 115, 119, 0, 88, 0, 25, 173, 194, 4, 2, 0, 7, 195, 20, 196, 115, 119, 0, 88, 0, 25, 174, 186, 4, 2, 0, 7, 197, 20, 193, 115, 119, 0, 88, 0, 25, 175, 178, 4, 2, 0, 7, 198, 20, 180, 115, 119, 0, 88, 0, 25, 176, 189, 4, 2, 0, 7, 199, 20, 200, 115, 119, 0, 88, 0, 178, 177, 201, 3, 2, 0, 7, 202, 20, 203, 0, 88, 0, 178, 179, 204, 3, 2, 0, 7, 205, 20, 206, 0, 88, 0, 178, 180, 201, 3, 2, 0, 7, 207, 20, 203, 0, 88, 0, 178, 181, 204, 3, 2, 0, 7, 208, 20, 206, 0 </int_array>
+			<int_array  len="1546"> 				-1, -1, 1, 0, -1, 18, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 7, 4, 8, 4, 9, 0, 10, 0, 11, 0, 12, 0, 13, 3, 14, 1, 15, 5, 16, 5, 17, 2, 18, 6, 19, 7, 0, 0, 0, 21, 20, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 6, 23, 8, 24, 9, 25, 10, 26, 11, 27, 12, 28, 13, 29, 14, 30, 5, 31, 2, 32, 8, 33, 10, 34, 15, 19, 16, 0, 0, 0, 21, 35, -1, 23, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 6, 23, 8, 24, 9, 25, 10, 26, 11, 27, 12, 28, 13, 29, 14, 30, 5, 31, 2, 32, 8, 33, 10, 34, 17, 36, 18, 19, 19, 37, 20, 38, 21, 39, 20, 0, 2, 0, 41, 40, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 22, 23, 8, 24, 9, 42, 23, 43, 1, 44, 6, 45, 3, 46, 3, 47, 5, 48, 5, 49, 5, 50, 24, 51, 3, 52, 25, 0, 2, 0, 41, 53, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 26, 23, 8, 24, 9, 42, 23, 43, 1, 44, 6, 45, 3, 46, 3, 47, 5, 48, 5, 49, 27, 50, 24, 51, 3, 52, 25, 0, 2, 0, 55, 54, -1, 10, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 6, 23, 8, 24, 9, 56, 1, 19, 28, 0, 5, 0, 41, 57, 29, 4, 2, 0, 22, 30, 49, 31, 19, 32, 0, 5, 0, 41, 58, 33, 3, 2, 0, 22, 34, 19, 35, 0, 5, 0, 41, 59, 36, 3, 2, 0, 22, 37, 19, 38, 0, 5, 0, 41, 60, 36, 3, 2, 0, 22, 39, 19, 38, 0, 5, 0, 41, 61, 36, 3, 2, 0, 22, 40, 19, 38, 0, 5, 0, 41, 62, 36, 3, 2, 0, 22, 41, 19, 38, 0, 5, 0, 41, 63, 42, 3, 2, 0, 22, 43, 19, 44, 0, 5, 0, 41, 64, 42, 3, 2, 0, 22, 45, 19, 44, 0, 5, 0, 41, 65, 42, 3, 2, 0, 22, 46, 19, 44, 0, 5, 0, 41, 66, 42, 3, 2, 0, 22, 47, 19, 44, 0, 5, 0, 41, 67, 42, 3, 2, 0, 22, 48, 19, 44, 0, 5, 0, 41, 68, 42, 3, 2, 0, 22, 49, 19, 44, 0, 5, 0, 41, 69, 42, 3, 2, 0, 22, 50, 19, 44, 0, 5, 0, 41, 70, 29, 4, 2, 0, 22, 51, 49, 31, 19, 32, 0, 5, 0, 41, 71, 29, 4, 2, 0, 22, 52, 49, 31, 19, 32, 0, 5, 0, 41, 72, 29, 4, 2, 0, 22, 53, 49, 31, 19, 32, 0, 5, 0, 41, 73, 29, 4, 2, 0, 22, 54, 49, 31, 19, 32, 0, 5, 0, 41, 74, 29, 4, 2, 0, 22, 55, 49, 31, 19, 32, 0, 5, 0, 41, 75, 29, 4, 2, 0, 22, 56, 49, 31, 19, 32, 0, 5, 0, 41, 76, 33, 3, 2, 0, 22, 57, 19, 35, 0, 5, 0, 41, 77, 33, 3, 2, 0, 22, 58, 19, 35, 0, 5, 0, 41, 78, 33, 4, 2, 0, 22, 59, 49, 60, 19, 35, 0, 5, 0, 41, 79, 33, 4, 2, 0, 22, 61, 49, 62, 19, 35, 0, 5, 0, 41, 80, 33, 3, 2, 0, 22, 63, 19, 35, 0, 5, 0, 41, 81, 33, 4, 2, 0, 22, 64, 49, 62, 19, 35, 0, 5, 0, 41, 82, 33, 4, 2, 0, 22, 65, 49, 60, 19, 35, 0, 5, 0, 41, 83, 33, 4, 2, 0, 22, 66, 49, 60, 19, 35, 0, 5, 0, 41, 84, 33, 4, 2, 0, 22, 67, 49, 62, 19, 35, 0, 5, 0, 41, 85, 33, 5, 2, 0, 22, 68, 24, 69, 49, 60, 19, 35, 0, 5, 0, 41, 86, 33, 4, 2, 0, 22, 70, 49, 62, 19, 35, 0, 5, 0, 41, 87, 33, 4, 2, 0, 22, 71, 49, 62, 19, 35, 0, 5, 0, 41, 88, 33, 4, 2, 0, 22, 72, 49, 60, 19, 35, 0, 5, 0, 41, 89, 33, 4, 2, 0, 22, 73, 49, 60, 19, 35, 0, 5, 0, 41, 90, 33, 4, 2, 0, 22, 74, 49, 62, 19, 35, 0, 5, 0, 41, 91, 33, 4, 2, 0, 22, 75, 49, 60, 19, 35, 0, 5, 0, 41, 92, 33, 3, 2, 0, 22, 76, 19, 35, 0, 5, 0, 41, 93, 33, 4, 2, 0, 22, 77, 49, 60, 19, 35, 0, 5, 0, 41, 94, 33, 4, 2, 0, 22, 78, 49, 62, 19, 35, 0, 5, 0, 41, 95, 33, 4, 2, 0, 22, 79, 49, 62, 19, 35, 0, 5, 0, 41, 96, 33, 3, 2, 0, 22, 80, 19, 35, 0, 5, 0, 41, 97, 33, 3, 2, 0, 22, 81, 19, 35, 0, 5, 0, 41, 98, 33, 3, 2, 0, 22, 82, 19, 35, 0, 5, 0, 41, 99, 33, 3, 2, 0, 22, 83, 19, 35, 0, 5, 0, 41, 100, 33, 3, 2, 0, 22, 84, 19, 35, 0, 5, 0, 41, 101, 33, 3, 2, 0, 22, 85, 19, 35, 0, 5, 0, 41, 102, 33, 4, 2, 0, 22, 86, 49, 62, 19, 35, 0, 5, 0, 41, 103, 33, 4, 2, 0, 22, 87, 49, 62, 19, 35, 0, 5, 0, 41, 104, 33, 4, 2, 0, 22, 88, 49, 60, 19, 35, 0, 5, 0, 41, 105, 33, 4, 2, 0, 22, 89, 49, 60, 19, 35, 0, 5, 0, 41, 106, 33, 4, 2, 0, 22, 90, 49, 60, 19, 35, 0, 5, 0, 41, 107, 33, 4, 2, 0, 22, 91, 49, 60, 19, 35, 0, 5, 0, 41, 108, 33, 3, 2, 0, 22, 92, 19, 35, 0, 5, 0, 41, 109, 33, 3, 2, 0, 22, 93, 19, 35, 0, 5, 0, 41, 110, 29, 4, 2, 0, 22, 94, 49, 95, 19, 32, 0, 5, 0, 41, 111, 29, 4, 2, 0, 22, 96, 49, 95, 19, 32, 0, 5, 0, 41, 112, 33, 4, 2, 0, 22, 97, 49, 62, 19, 35, 0, 2, 0, 55, 55, -1, 10, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 6, 23, 8, 24, 9, 56, 1, 19, 98, 0, 62, 0, 41, 113, 99, 3, 2, 0, 22, 100, 19, 101, 0, 62, 0, 41, 114, 102, 4, 2, 0, 22, 103, 19, 104, 115, 105, 0, 62, 0, 41, 116, 106, 4, 2, 0, 22, 107, 19, 108, 115, 109, 0, 62, 0, 41, 117, 110, 4, 2, 0, 22, 111, 19, 112, 115, 113, 0, 62, 0, 41, 118, 110, 3, 2, 0, 22, 114, 19, 112, 0, 62, 0, 41, 119, 115, 3, 2, 0, 22, 116, 19, 117, 0, 62, 0, 41, 120, 115, 3, 2, 0, 22, 118, 19, 117, 0, 62, 0, 41, 121, 119, 3, 2, 0, 22, 120, 19, 121, 0, 62, 0, 41, 122, 122, 3, 2, 0, 22, 123, 19, 124, 0, 62, 0, 41, 123, 122, 3, 2, 0, 22, 125, 19, 124, 0, 62, 0, 41, 124, 119, 3, 2, 0, 22, 126, 19, 121, 0, 62, 0, 41, 125, 127, 4, 2, 0, 22, 128, 19, 129, 115, 113, 0, 62, 0, 127, 126, 130, 3, 2, 0, 22, 131, 19, 132, 0, 62, 0, 127, 128, 133, 3, 2, 0, 22, 134, 19, 135, 0, 62, 0, 127, 129, 130, 3, 2, 0, 22, 136, 19, 132, 0, 62, 0, 127, 130, 130, 3, 2, 0, 22, 137, 19, 132, 0, 62, 0, 127, 131, 133, 3, 2, 0, 22, 138, 19, 135, 0, 62, 0, 127, 132, 133, 3, 2, 0, 22, 139, 19, 135, 0, 2, 0, 41, 133, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 140, 23, 8, 24, 9, 42, 23, 43, 1, 44, 6, 45, 3, 46, 3, 47, 5, 48, 5, 49, 141, 50, 24, 51, 3, 52, 25, 0, 2, 0, 41, 134, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 142, 23, 8, 24, 9, 42, 23, 43, 1, 44, 6, 45, 3, 46, 3, 47, 5, 48, 5, 49, 10, 50, 24, 51, 3, 52, 25, 0, 2, 0, 41, 135, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 143, 23, 8, 24, 9, 42, 23, 43, 1, 44, 6, 45, 3, 46, 3, 47, 5, 48, 5, 49, 141, 50, 24, 51, 3, 52, 25, 0, 2, 0, 41, 136, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 144, 23, 8, 24, 9, 42, 23, 43, 1, 44, 6, 45, 3, 46, 3, 47, 5, 48, 5, 49, 10, 50, 24, 51, 3, 52, 25, 0, 2, 0, 41, 137, -1, 19, 2, 0, 3, 1, 4, 2, 5, 2, 6, 3, 22, 145, 23, 8, 24, 9, 42, 23, 43, 1, 44, 6, 45, 3, 46, 3, 47, 5, 48, 5, 49, 10, 50, 24, 51, 3, 52, 25, 0 </int_array>
 			<string> "conns" </string>
 			<int_array  len="0"> 				 </int_array>
 		</dictionary>

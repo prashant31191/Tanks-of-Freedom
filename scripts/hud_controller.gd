@@ -21,6 +21,7 @@ var hud_unit_icon
 var hud_unit_progress_ap
 var hud_unit_progress_ap_blank
 var hud_unit_progress_attack
+var hud_unit_shield
 
 var hud_building
 var hud_building_spawn_button
@@ -46,8 +47,11 @@ var player_ap
 var turn_card
 var turn_counter
 
+var end_game
 var blue_wins
 var red_wins
+var win_missions_button
+var win_restart_button
 
 func init_root(root, action_controller_object, hud):
 	root_node = root
@@ -66,8 +70,13 @@ func init_root(root, action_controller_object, hud):
 	turn_card = hud.get_node("game_card")
 	turn_counter = turn_card.get_node("turn_no")
 
-	blue_wins = hud.get_node("middle_center/blue_win")
-	red_wins = hud.get_node("middle_center/red_win")
+	end_game = hud.get_node("end_game")
+	blue_wins = hud.get_node("end_game/blue_win")
+	red_wins = hud.get_node("end_game/red_win")
+	win_missions_button = end_game.get_node("buttons/select_mission")
+	win_missions_button.connect("pressed", root, "show_missions")
+	win_restart_button = end_game.get_node("buttons/restart")
+	win_restart_button.connect("pressed", root, "restart_map")
 
 	hud_unit = hud.get_node("bottom_center/unit_card")
 	hud_unit_life = hud_unit.get_node("life")
@@ -81,6 +90,7 @@ func init_root(root, action_controller_object, hud):
 	hud_unit_progress_ap = hud_unit.get_node("progress_ap")
 	hud_unit_progress_ap_blank = hud_unit.get_node("progress_ap_blank")
 	hud_unit_progress_attack = hud_unit.get_node("progress_attack")
+	hud_unit_shield = hud_unit.get_node("shield")
 
 	hud_building = hud.get_node("bottom_center/building_card")
 	hud_building_icon = hud_building.get_node("building_icon")
@@ -126,6 +136,10 @@ func update_unit_card(unit):
 	else:
 		hud_unit_ap_red.show()
 	hud_unit_progress_attack.set_frame(stats.attacks_number)
+	if unit.can_defend():
+		hud_unit_shield.show()
+	else:
+		hud_unit_shield.hide()
 
 func set_unit_card_icon(unit):
 	hud_unit_icon.set_region_rect(Rect2((unit.player + 1) * 32, unit.type * 32, 32, 32))
@@ -175,6 +189,8 @@ func show_in_game_card(messages, current_player):
 	end_turn_button.set_disabled(true)
 	end_turn_button_red.set_disabled(true)
 	end_turn_card.hide()
+	end_game.hide()
+	
 	turn_card.hide()
 	self.clear_building_card()
 	self.clear_unit_card()
@@ -199,6 +215,7 @@ func close_in_game_card():
 	end_turn_card.show()
 	turn_card.show()
 	action_controller.move_camera_to_active_bunker()
+	action_controller.show_bonus_ap()
 
 func update_ap(ap):
 	player_ap.set_text(str(ap))
@@ -219,6 +236,7 @@ func show_win(player):
 	end_turn_card.hide()
 	self.clear_building_card()
 	self.clear_unit_card()
+	end_game.show();
 	if player == 0:
 		blue_wins.show()
 		print('blue wins')

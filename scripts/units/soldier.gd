@@ -7,7 +7,7 @@ func _init():
 	max_life = 8
 	attack = 5
 	plain = 2
-	road = 2
+	road = 1
 	river = 4
 	max_ap = 8
 	attack_ap = 2
@@ -30,6 +30,8 @@ func can_capture_building(building):
 	if type == "AIRPORT":
 		return true
 	if type == "HQ":
+		return true
+	if type == "GSM TOWER":
 		return true
 
 	return false;

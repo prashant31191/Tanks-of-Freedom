@@ -17,14 +17,17 @@ var sound_controller = preload("sound_controller.gd").new()
 var hud_controller
 var map_template
 var current_map
+var current_map_name
 var hud
 var ai_timer
 
 var maps = {
-	'tutorial' : preload('res://maps/map_0.xscn'),
-	'crossing' : preload('res://maps/map_0.xscn'),
-	'city' : preload('res://maps/map_1.xscn'),
-	'forest' : preload('res://maps/map_2.xscn')
+	'map_1' : preload('res://maps/map_1.xscn'),
+	'map_2' : preload('res://maps/map_2.xscn'),
+	'map_3' : preload('res://maps/map_3.xscn'),
+	'map_4' : preload('res://maps/map_4.xscn'),
+	'map_5' : preload('res://maps/map_5.xscn'),
+	'map_6' : preload('res://maps/map_6.xscn')
 }
 
 var settings = {
@@ -32,7 +35,7 @@ var settings = {
 	'music_enabled' : true,
 	'shake_enabled' : true,
 	'cpu_0' : false,
-	'cpu_1' : false
+	'cpu_1' : true
 }
 
 var is_map_loaded = false
@@ -56,7 +59,8 @@ func _input(event):
 			position.y += 2
 			selector.set_pos(position)
 			selector.calculate_cost()
-			hud_controller.mark_potential_ap_usage(action_controller.active_field, selector.current_cost)
+			if not settings['cpu_' + str(action_controller.current_player)]:
+				hud_controller.mark_potential_ap_usage(action_controller.active_field, selector.current_cost)
 
 		# MOUSE SELECT
 		if (event.type == InputEvent.MOUSE_BUTTON):
@@ -80,6 +84,7 @@ func start_ai_timer():
 
 func load_map(template_name):
 	self.unload_map()
+	current_map_name = template_name
 	var map_template = maps[template_name]
 	current_map = map_template.instance()
 	hud = hud_template.instance()
@@ -106,6 +111,9 @@ func load_map(template_name):
 	else:
 		self.unlock_for_player()
 	sound_controller.play_soundtrack()
+	
+func restart_map():
+	self.load_map(current_map_name)
 
 func unload_map():
 	if is_map_loaded == false:
@@ -136,6 +144,10 @@ func toggle_menu():
 			is_paused = false
 			menu.hide()
 			hud.show()
+			
+func show_missions():
+	self.toggle_menu()
+	menu.show_maps_menu()
 
 func load_menu():
 	is_intro = false

@@ -1,6 +1,7 @@
 var tileSize = 40
 var tileSizeVector = Vector2(tileSize,tileSize)
-var gridWidth= 30; var gridHeight = 30
+var gridWidth= 30;
+var gridHeight = 30
 var grid = {}
 var startTile
 var endTile
@@ -11,20 +12,58 @@ var searched_children = []
 var openList = []
 var closedList = []
 
-const RANDOMNESS = 50
-
 var lastCurrent
+var path_cache = []
+var bench_result = 0
 
-func pathSearch(startTile, endTile):
+const CACHE_MINIMUM_PATH_SIZE = 5
+
+func pathSearch(startTile, endTile, own_units):
+
+	#var start = OS.get_ticks_msec();
 	searched_children.append(startTile)
-	path = [startTile, endTile]
-	var finalPath = __pathSearch2(startTile, endTile)
+	var add_path_to_cache = true
 
-	#removing start element
-	return finalPath
+	for cache in path_cache:
+		var end_pos = cache.find(endTile)
+		var start_pos = cache.find(startTile)
+		
+		if (end_pos != -1 && start_pos != -1):
+			var cached = []
+
+			var index_range
+			if (start_pos > end_pos):
+				index_range = range(end_pos, start_pos)
+			else:
+				index_range = range(start_pos, end_pos)
+
+			for i in index_range:
+				cached.append(cache[i])
+
+			if (self.__invalid_check(cached, own_units)):
+				add_path_to_cache = false
+				#print ('invalidate')
+				continue
+
+			return cached
+
+	var result = __pathSearch2(startTile, endTile)
+
+	if (add_path_to_cache && result.size() >= self.CACHE_MINIMUM_PATH_SIZE):
+		path_cache.append(result)
+	#print('CACHE_SIZE: ', path_cache.size())
+	return result
 
 func set_cost_grid(cost_grid):
 	grid = cost_grid
+
+func __invalid_check(cached, own_units):
+	# temp cache invalidation
+	for unit_pos in own_units:
+		if (cached.find(startTile)):
+			return true
+
+	return false
 
 # new path search
 func __pathSearch2(start, goal):
