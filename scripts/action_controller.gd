@@ -156,7 +156,7 @@ func mark_field(source, target, indicator, direction):
 			#print(target.object)
 			if target.object.group == 'unit':
 				if target.object.player != current_player && battle_controller.can_attack(source.object, target.object):
-					indicator.set_pos(position)
+					indicator.set_pos(position+Vector2(1,1))
 					ysort.add_child(indicator)
 					indicator.get_node('anim').play("attack")
 			if target.object.group == 'building' && target.object.player != current_player && source.object.type == 0:
@@ -216,7 +216,7 @@ func attach_objects(collection):
 func end_turn():
 	self.stats_set_time()
 	if self.root_node.settings['turns_cap'] > 0:
-		if turn > self.root_node.settings['turns_cap']:
+		if turn >= self.root_node.settings['turns_cap']:
 			self.end_game()
 			return
 	

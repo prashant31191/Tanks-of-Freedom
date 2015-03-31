@@ -97,7 +97,6 @@ func load_map(template_name, workshop_file_name):
 		self.is_from_workshop = true
 		current_map.load_map(workshop_file_name)
 		current_map.show_blueprint = false
-		current_map.generate_map()
 		self.workshop_file_name = workshop_file_name
 	hud = hud_template.instance()
 
@@ -213,7 +212,7 @@ func write_settings_to_file():
 	print('ToF: settings saved to file')
 	settings_file.close()
 	return
-	
+
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	self.read_settings_from_file()
