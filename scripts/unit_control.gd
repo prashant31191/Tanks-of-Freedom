@@ -4,10 +4,13 @@ extends AnimatedSprite
 export var player = -1
 export var position_on_map = Vector2(0,0)
 var last_position_on_map = Vector2(0,0)
+var current_map_terrain
 var current_map
 var health_bar
 var icon_shield
+var icon_cloud
 var type = 0
+var kills = 0
 
 var life
 var max_life
@@ -47,7 +50,7 @@ func get_pos_map():
 	return position_on_map
 
 func get_initial_pos():
-	position_on_map = current_map.world_to_map(self.get_pos())
+	position_on_map = current_map_terrain.world_to_map(self.get_pos())
 	last_position_on_map = position_on_map
 	return position_on_map
 
@@ -61,11 +64,13 @@ func set_stats(new_stats):
 	attacks_number = new_stats.attacks_number
 	update_healthbar()
 	update_shield()
+	update_ap_left()
 
 func reset_ap():
 	ap = max_ap
 	attacks_number = max_attacks_number
 	update_shield()
+	update_ap_left()
 	update_healthbar()
 
 func set_pos_map(new_position):
@@ -78,7 +83,7 @@ func set_pos_map(new_position):
 	elif new_position.y > position_on_map.y:
 		self.set_flip_h(false)
 
-	self.set_pos(current_map.map_to_world(new_position))
+	self.set_pos(current_map_terrain.map_to_world(new_position))
 	last_position_on_map = position_on_map
 	position_on_map = new_position
 
@@ -110,12 +115,8 @@ func get_life_status():
 func update_healthbar():
 	var frame = health_bar.get_frame()
 	var life_status = self.get_life_status()
-	if life_status <= 0.33:
-		health_bar.set_frame(2)
-	elif life_status <= 0.66:
-		health_bar.set_frame(1)
-	else:
-		health_bar.set_frame(0)
+
+	health_bar.set_frame(floor(life_status*10))
 	return
 
 func show_explosion():
@@ -157,12 +158,24 @@ func update_shield():
 	else:
 		icon_shield.hide()
 
+func update_ap_left():
+	if ap == max_ap:
+		icon_cloud.show()
+	else:
+		icon_cloud.hide()
+
+func score_kill():
+	kills = kills + 1
+
 func _ready():
 	add_to_group("units")
 	get_node('anim').play("move")
-	current_map = get_node("/root/game").current_map_terrain
+	if get_node("/root/game"):
+		current_map_terrain = get_node("/root/game").current_map_terrain
+		current_map = get_node("/root/game").current_map
 	health_bar = get_node("health")
 	icon_shield = get_node("shield")
+	icon_cloud = get_node("cloud")
 	pass
 
 
