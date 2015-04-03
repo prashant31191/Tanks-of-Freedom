@@ -2,6 +2,7 @@
 var root_node
 var abstract_map = preload('abstract_map.gd').new()
 var ysort
+var damage_layer
 var selector
 var active_field = null
 var active_indicator = preload('res://gui/selector.xscn').instance()
@@ -73,7 +74,7 @@ func post_handle_action():
 func capture_building(active_field, field):
 	self.use_ap()
 	field.object.claim(current_player)
-	sound_controller.play('pickup_box')
+	sound_controller.play('occupy_building')
 	self.despawn_unit(active_field)
 
 	self.activate_field(field)
@@ -88,6 +89,7 @@ func init_root(root, map, hud):
 	abstract_map.tilemap = map.get_node("terrain")
 	camera = root.scale_root
 	ysort = map.get_node('terrain/front')
+	damage_layer = map.get_node('terrain/destruction')
 	selector = root.selector
 	self.import_objects()
 	hud_controller.init_root(root, self, hud)
@@ -193,8 +195,8 @@ func spawn_unit_from_active_building():
 		ysort.add_child(unit)
 		unit.set_pos_map(spawn_point.position)
 		spawn_point.object = unit
-		self.deduct_ap(required_ap)
-		sound_controller.play('spawn')
+		self.deduct_ap(required_ap) 
+		sound_controller.play_unit_sound(unit, sound_controller.SOUND_SPAWN)
 		self.activate_field(spawn_point)
 		self.move_camera_to_point(spawn_point.position)
 
@@ -219,7 +221,7 @@ func end_turn():
 		if turn >= self.root_node.settings['turns_cap']:
 			self.end_game()
 			return
-	
+
 	sound_controller.play('end_turn')
 	if current_player == 0:
 		self.switch_to_player(1)
@@ -230,8 +232,6 @@ func end_turn():
 
 	#gather stats
 	battle_stats.add_domination()
-	if current_player == 1 :
-		print(battle_stats.get_stats())
 
 func move_camera_to_active_bunker():
 	self.move_camera_to_point(position_controller.get_player_bunker_position(current_player))
@@ -332,10 +332,7 @@ func camera_zoom_out():
 	abstract_map.map.scale = camera.get_scale()
 
 func play_destroy(field):
-	if (field.object.type == 0):
-		sound_controller.play('hurt')
-	else:
-		sound_controller.play('explosion')
+	sound_controller.play_unit_sound(field.object, sound_controller.SOUND_DIE)
 
 func update_unit(field):
 	hud_controller.update_unit_card(active_field.object)
@@ -343,7 +340,7 @@ func update_unit(field):
 
 func move_unit(active_field, field):
 	if movement_controller.move_object(active_field, field):
-		sound_controller.play('move')
+		sound_controller.play_unit_sound(field.object, sound_controller.SOUND_MOVE)
 		self.use_ap()
 		self.activate_field(field)
 
@@ -364,31 +361,31 @@ func handle_battle(active_field, field):
 		self.use_ap()
 		self.clear_movement_indicators()
 
+		sound_controller.play_unit_sound(field.object, sound_controller.SOUND_ATTACK)
 		if (battle_controller.resolve_fight(active_field.object, field.object)):
-			#print('attacker kill defender');
 			self.play_destroy(field)
 			self.destroy_unit(field)
 			self.update_unit(active_field)
 
 			#gather stats
 			battle_stats.add_kills(current_player)
+			self.collateral_damage(field.position)
 		else:
-			sound_controller.play('not_dead')
+			sound_controller.play_unit_sound(field.object, sound_controller.SOUND_DAMAGE)
 			field.object.show_explosion()
 			self.update_unit(active_field)
 			# defender can deal damage
-			#print('defend!')
 			if battle_controller.can_defend(field.object, active_field.object):
 				if (battle_controller.resolve_defend(active_field.object, field.object)):
-					#print('defender kill attacker');
 					self.play_destroy(active_field)
 					self.destroy_unit(active_field)
 					self.clear_active_field()
 
 					#gather stats
 					battle_stats.add_kills(abs(current_player - 1))
+					self.collateral_damage(active_field.position)
 				else:
-					sound_controller.play('not_dead')
+					sound_controller.play_unit_sound(field.object, sound_controller.SOUND_DAMAGE)
 					self.update_unit(active_field)
 					active_field.object.show_explosion()
 
@@ -396,3 +393,24 @@ func handle_battle(active_field, field):
 		sound_controller.play('no_attack')
 
 	return BREAK_EVENT_LOOP
+func collateral_damage(center):
+	var damage_chance = 0.5
+	if randf() <= damage_chance:
+		self.damage_terrain(center + Vector2(0, 1))
+	if randf() <= damage_chance:
+		self.damage_terrain(center + Vector2(1, 0))
+	if randf() <= damage_chance:
+		self.damage_terrain(center - Vector2(0, 1))
+	if randf() <= damage_chance:
+		self.damage_terrain(center - Vector2(1, 0))
+
+	var field = abstract_map.get_field(center)
+	if field.damage == null:
+		field.add_damage(damage_layer)
+
+func damage_terrain(position):
+	var field = abstract_map.get_field(position)
+	if field == null || field.object == null || field.object.group != 'terrain':
+		return
+
+	field.object.set_damage()
