@@ -21,15 +21,7 @@ var current_map_name
 var hud
 var ai_timer
 
-var maps = {
-	'workshop' : preload('res://maps/workshop.xscn'),
-	'map_1' : preload('res://maps/map_1.xscn'),
-	'map_2' : preload('res://maps/map_2.xscn'),
-	'map_3' : preload('res://maps/map_1.xscn'),
-	'map_4' : preload('res://maps/map_1.xscn'),
-	'map_5' : preload('res://maps/map_1.xscn'),
-	'map_6' : preload('res://maps/map_1.xscn')
-}
+var maps = [preload('res://maps/workshop.xscn'),preload('res://maps/map_1.xscn'),preload('res://maps/map_2.xscn'),preload('res://maps/map_1.xscn'),preload('res://maps/map_1.xscn'),preload('res://maps/map_1.xscn'),preload('res://maps/map_1.xscn')]
 
 var settings = {
 	'is_ok' : true,
@@ -43,6 +35,7 @@ var settings = {
 
 var is_map_loaded = false
 var is_intro = true
+var is_demo = false
 var is_paused = false
 var is_locked_for_cpu = false
 var is_from_workshop = false
@@ -50,8 +43,9 @@ var settings_file = File.new()
 var workshop_file_name
 
 func _input(event):
-	if is_intro:
-		self.load_menu()
+	if is_demo == true:
+		is_demo = false
+		get_node("DemoTimer").stop()
 
 	if is_map_loaded && is_paused == false:
 		if is_locked_for_cpu == false:
@@ -89,8 +83,10 @@ func start_ai_timer():
 	ai_timer.inject_action_controller(action_controller, hud_controller)
 	ai_timer.start()
 
-func load_map(template_name, workshop_file_name):
+func load_map(template_name, workshop_file_name = false):
 	self.unload_map()
+	if str(template_name) == "workshop":
+		template_name = 0
 	current_map_name = template_name
 	var map_template = maps[template_name]
 	current_map = map_template.instance()
@@ -116,7 +112,8 @@ func load_map(template_name, workshop_file_name):
 	hud_controller = action_controller.hud_controller
 	hud_controller.show_map()
 	selector.init(action_controller)
-	menu.close_button.show()
+	if (menu && menu.close_button):
+		menu.close_button.show()
 	is_map_loaded = true
 	set_process_input(true)
 	if settings['cpu_0']:
@@ -166,12 +163,10 @@ func show_missions():
 
 func load_menu():
 	is_intro = false
-	self.add_child(menu)
-	menu.close_button.hide()
-	#cursor.show()
-	#cursor.raise()
 	self.remove_child(intro)
 	intro.queue_free()
+	self.add_child(menu)
+	menu.close_button.hide()
 
 func lock_for_cpu():
 	is_locked_for_cpu = true
@@ -184,6 +179,13 @@ func unlock_for_player():
 	hud.get_node("top_center/turn_card/end_turn").set_disabled(false)
 	hud.get_node("top_center/turn_card/end_turn_red").set_disabled(false)
 	selector.show()
+
+func lock_for_demo():
+	is_demo = true
+	self.lock_for_cpu()
+
+func unlock_for_demo():
+ 	is_demo = false
 
 func read_settings_from_file():
 	var check
@@ -222,6 +224,7 @@ func _ready():
 	ai_timer = get_node("AITimer")
 	sound_controller.init_root(self)
 	menu.init_root(self)
+	intro.init_root(self)
 	cursor.hide()
 	self.add_child(cursor)
 	self.add_child(intro)

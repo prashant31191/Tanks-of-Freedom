@@ -14,6 +14,7 @@ var battle_stats = preload("battle_stats.gd").new(self, position_controller)
 var sound_controller
 var ai
 var pathfinding
+var demo_timer
 
 var current_player = 0
 var player_ap = [0,0]
@@ -97,6 +98,7 @@ func init_root(root, map, hud):
 	if not root_node.settings['cpu_0']:
 		hud_controller.show_in_game_card([],current_player)
 	position_controller.init_root(root)
+	position_controller.prepare_nearby_tiles()
 	position_controller.get_player_bunker_position(current_player)
 	sound_controller = root.sound_controller
 
@@ -108,6 +110,8 @@ func init_root(root, map, hud):
 	movement_arrow_br = movement_template.instance()
 	movement_arrow_tl = movement_template.instance()
 	movement_arrow_tr = movement_template.instance()
+
+	demo_timer = root_node.get_node("DemoTimer")
 
 func activate_field(field):
 	self.clear_active_field()
@@ -232,6 +236,8 @@ func end_turn():
 
 	#gather stats
 	battle_stats.add_domination()
+	if turn == 1 || fmod(turn, 3) == 0:
+		ai.select_behaviour_type(current_player)
 
 func move_camera_to_active_bunker():
 	self.move_camera_to_point(position_controller.get_player_bunker_position(current_player))
@@ -318,6 +324,9 @@ func end_game():
 	game_ended = true
 	hud_controller.show_win(current_player, battle_stats.get_stats(), turn)
 	selector.hide()
+	if (root_node.is_demo):
+		demo_timer.reset(demo_timer.STATS)
+		demo_timer.start()
 
 func camera_zoom_in():
 	var scale = camera.get_scale()

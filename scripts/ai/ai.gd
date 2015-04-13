@@ -20,6 +20,7 @@ var cost_grid
 var behaviour_normal
 var behaviour_destroyer
 var behaviour_explorer
+var behaviours = []
 
 var player_behaviours
 
@@ -34,11 +35,14 @@ func _init(controller, astar_pathfinding, map, action_controller_object):
 	behaviour_normal = preload('behaviours/normal.gd').new()
 	behaviour_destroyer = preload('behaviours/destroyer.gd').new()
 	behaviour_explorer = preload('behaviours/explorer.gd').new()
+	behaviours = [behaviour_normal, behaviour_explorer, behaviour_destroyer]
 
-	player_behaviours = [behaviour_normal, behaviour_destroyer]
+	player_behaviours = [behaviour_normal, behaviour_normal]
 
-# func select_behaviour_type(player):
-#     self.
+func select_behaviour_type(player):
+	var rand = floor(rand_range(0, behaviours.size()))
+	player_behaviours[player] = behaviours[rand]
+	print('SELECTED BEHAVIOUR FOR PLAYER: ', player, ' IS ', rand)
 
 func gather_available_actions(player_ap):
 	current_player = action_controller.current_player
@@ -59,6 +63,7 @@ func gather_available_actions(player_ap):
 	return self.__execute_best_action()
 
 func __gather_unit_data(own_buildings, own_units, terrain):
+
 	if own_units.size() == 0:
 		return
 
@@ -69,6 +74,7 @@ func __gather_unit_data(own_buildings, own_units, terrain):
 		if unit.get_ap() < 2:
 			return
 		var position = unit.get_pos_map()
+
 
 		var nearby_tiles = position_controller.get_nearby_tiles(position, LOOKUP_RANGE)
 		var destinations = []
