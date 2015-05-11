@@ -18,6 +18,9 @@ func _process(delta):
 	if get_parent().is_paused:
 		return
 
+	if action_controller.abstract_map.map.panning:
+		return
+
 	timeout += delta
 
 	if timeout > self.__get_interval():

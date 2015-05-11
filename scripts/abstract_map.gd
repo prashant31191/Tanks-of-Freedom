@@ -11,6 +11,7 @@ const nonwalkable_cost = 999
 func get_fields():
 	return fields
 
+# TODO extending should be done in diferent wa
 func get_field(position):
 	if position.x < 0 || position.y < 0:
 		return self.create_field(Vector2(-1, -1))
@@ -20,8 +21,7 @@ func get_field(position):
 
 	if (position.x > size.x || position.y > size.y):
 		self.extend(position)
-	var field = fields[position.y][position.x]
-	return field
+	return fields[position.y][position.x]
 
 func extend(position):
 	var row
@@ -54,6 +54,9 @@ func create_field(position):
 	field.terrain_type = tilemap.get_cell(position.x, position.y)
 	field.abstract_map = self
 	return field
+
+func is_spawning_point(position):
+	return tilemap.get_cell(position.x, position.y) == 13
 
 # for pathfinding
 func create_tile_type_maps():
@@ -92,6 +95,56 @@ func calculate_path_cost(unit, path):
 		skip = false
 
 	return cost
+
+func add_trails(paths, player):
+	var count
+	var pos
+	for path in paths:
+		count = path.size() - 1
+		for idx in range(0, count):
+			pos = path[idx]
+
+			fields[pos.y][pos.x].mark_trail(path[idx + 1], 0)
+
+func get_available_directions(unit, current_position):
+	var directions = []
+	var next_position
+
+	next_position = __get_next_position(current_position, 1, 0)
+	if self.__check_direction_avaibility(next_position) && !unit.check_hiccup(next_position):
+		directions.append('right')
+
+	next_position = __get_next_position(current_position, -1, 0)
+	if self.__check_direction_avaibility(next_position) && !unit.check_hiccup(next_position):
+		directions.append('left')
+
+	next_position = __get_next_position(current_position, 0, -1)
+	if self.__check_direction_avaibility(next_position) && !unit.check_hiccup(next_position):
+		directions.append('up')
+
+	next_position = __get_next_position(current_position, 1, 1)
+	if self.__check_direction_avaibility(next_position) && !unit.check_hiccup(next_position):
+		directions.append('down')
+
+	return directions
+
+func __get_next_position(current_position, x_mod, y_mod):
+	var tmp = current_position
+	tmp.x = tmp.x + x_mod
+	tmp.y = tmp.y + y_mod
+
+	return tmp
+
+func __check_direction_avaibility(next_position):
+	if next_position.x < 0 || next_position.y < 0:
+		return false
+
+	var field = get_field(next_position)
+	if field.terrain_type != - 1 && field.object == null:
+		return true
+
+	return false
+
 
 
 

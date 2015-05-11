@@ -353,7 +353,7 @@
 						<string> "Script" </string>
 						<dictionary  shared="false">
 							<string> "current" </string>
-							<int> 18 </int>
+							<int> 7 </int>
 							<string> "sources" </string>
 							<array  len="19" shared="false">
 								<string> "res://scripts/map_controller.gd" </string>

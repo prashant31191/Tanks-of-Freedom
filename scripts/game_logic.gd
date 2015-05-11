@@ -15,13 +15,14 @@ var intro = preload('res://intro.xscn').instance()
 var action_controller
 var sound_controller = preload("sound_controller.gd").new()
 var hud_controller
-var map_template
 var current_map
 var current_map_name
 var hud
 var ai_timer
 
-var maps = [preload('res://maps/workshop.xscn'),preload('res://maps/map_1.xscn'),preload('res://maps/map_2.xscn'),preload('res://maps/map_1.xscn'),preload('res://maps/map_1.xscn'),preload('res://maps/map_1.xscn'),preload('res://maps/map_1.xscn')]
+var dependency_container = preload('res://scripts/dependency_container.gd').new()
+
+var map_template = preload('res://maps/workshop.xscn')
 
 var settings = {
 	'is_ok' : true,
@@ -30,7 +31,8 @@ var settings = {
 	'shake_enabled' : true,
 	'cpu_0' : false,
 	'cpu_1' : true,
-	'turns_cap': 0
+	'turns_cap': 0,
+	'camera_follow': true
 }
 
 var is_map_loaded = false
@@ -85,16 +87,16 @@ func start_ai_timer():
 
 func load_map(template_name, workshop_file_name = false):
 	self.unload_map()
-	if str(template_name) == "workshop":
-		template_name = 0
 	current_map_name = template_name
-	var map_template = maps[template_name]
 	current_map = map_template.instance()
 	self.workshop_file_name = workshop_file_name
 	if workshop_file_name:
 		self.is_from_workshop = true
 		current_map.load_map(workshop_file_name)
-		current_map.show_blueprint = false
+	else:
+		self.is_from_workshop = false
+		current_map.load_campaign_map(template_name)
+	current_map.show_blueprint = false
 	hud = hud_template.instance()
 
 	current_map_terrain = current_map.get_node("terrain")
@@ -149,6 +151,8 @@ func toggle_menu():
 		if menu.is_hidden():
 			is_paused = true
 			action_controller.stats_set_time()
+			menu.reset_player_buttons()
+			menu.adjust_turns_cap_label()
 			menu.show()
 			hud.hide()
 		else:
@@ -162,6 +166,7 @@ func show_missions():
 	menu.show_maps_menu()
 
 func load_menu():
+	menu.show()
 	is_intro = false
 	self.remove_child(intro)
 	intro.queue_free()
@@ -173,12 +178,15 @@ func lock_for_cpu():
 	hud.get_node("top_center/turn_card/end_turn").set_disabled(true)
 	hud.get_node("top_center/turn_card/end_turn_red").set_disabled(true)
 	selector.hide()
+	if self.settings['cpu_0'] * self.settings['cpu_1'] == 0:
+		self.current_map.camera_follow = false
 
 func unlock_for_player():
 	is_locked_for_cpu = false
 	hud.get_node("top_center/turn_card/end_turn").set_disabled(false)
 	hud.get_node("top_center/turn_card/end_turn_red").set_disabled(false)
 	selector.show()
+	self.current_map.camera_follow = true
 
 func lock_for_demo():
 	is_demo = true
@@ -193,7 +201,8 @@ func read_settings_from_file():
 		settings_file.open("user://settings.tof",File.READ)
 		check = settings_file.get_var()
 		if self.check_file_data(check):
-			self.settings = check
+			for option in check:
+				self.settings[option] = check[option]
 			print('ToF: settings loaded from file')
 		else:
 			print('ToF: filecheck filed! making new file with default settings')
@@ -218,12 +227,14 @@ func write_settings_to_file():
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	self.dependency_container.init_root(self)
 	self.read_settings_from_file()
 	scale_root = get_node("/root/game/pixel_scale")
 	scale_root.set_scale(Vector2(5,5))
 	ai_timer = get_node("AITimer")
 	sound_controller.init_root(self)
 	menu.init_root(self)
+	menu.hide()
 	intro.init_root(self)
 	cursor.hide()
 	self.add_child(cursor)

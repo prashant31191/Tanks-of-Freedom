@@ -84,27 +84,32 @@ func load_maps_menu():
 	maps_turns_cap_label = maps_turns_cap.get_node("Label")
 	maps_select_map = maps_sub_menu.get_node("control/menu_controls/maps")
 	maps_select_custom_map = maps_sub_menu.get_node("control/menu_controls/custom_maps")
-	
-	maps_select_map.add_item("Mission 1",1)
-	maps_select_map.add_item("Mission 2",2)
-	maps_select_map.add_item("Mission 3",3)
-	maps_select_map.add_item("Mission 4",4)
-	maps_select_map.add_item("Mission 5",5)
-	
-	maps_select_custom_map.add_item("Custom map 1",1)
-	maps_select_custom_map.add_item("Custom map 2",1)
-	maps_select_custom_map.add_item("Custom map 3",1)
-	maps_select_custom_map.add_item("Custom map 4",1)
-	
-	maps_play_button.connect("pressed", self, "load_map", [maps_select_map.get_selected_ID()])
-	maps_play_custom_button.connect("pressed", self, "load_map", [maps_select_custom_map.get_selected_ID()])
+
+	maps_select_map.add_item("border")
+	maps_select_map.add_item("river")
+	maps_select_map.add_item("city")
+	maps_select_map.add_item("country")
+
+	self.load_custom_maps_list(maps_select_custom_map)
+
+	maps_play_button.connect("pressed", self, "load_map_from_list", [maps_select_map, false])
+	maps_play_custom_button.connect("pressed", self, "load_map_from_list", [maps_select_custom_map, true])
 	maps_close_button.connect("pressed", self, "hide_maps_menu")
 	maps_turns_cap.connect("pressed", self, "toggle_turns_cap")
 	maps_select_map.connect("selected",self,"load_map", [])
 
+func load_custom_maps_list(dropdown):
+	var map_list = root.dependency_container.map_list.maps
 
-		
+	for map in map_list:
+		dropdown.add_item(map)
+
+func refresh_custom_maps_list():
+	self.maps_select_custom_map.clear()
+	self.load_custom_maps_list(self.maps_select_custom_map)
+
 func show_maps_menu():
+	self.refresh_custom_maps_list()
 	control_node.hide()
 	maps_sub_menu.show()
 
@@ -143,6 +148,7 @@ func enter_workshop():
 func show_workshop():
 	control_node.hide()
 	workshop.show()
+	workshop.units.raise()
 
 func hide_workshop():
 	workshop.hide()
@@ -150,6 +156,9 @@ func hide_workshop():
 
 func toggle_player(player):
 	root.settings['cpu_' + str(player)] = not root.settings['cpu_' + str(player)]
+	self.set_player_button_state(player)
+
+func set_player_button_state(player):
 	var label
 	if root.settings['cpu_' + str(player)]:
 		label = "CPU"
@@ -161,8 +170,18 @@ func toggle_player(player):
 	else:
 		red_player_button_label.set_text(label)
 
-func load_map(name):
-	root.load_map(name,false)
+func reset_player_buttons():
+	self.set_player_button_state(0)
+	self.set_player_button_state(1)
+
+func load_map_from_list(list, from_workshop):
+	self.load_map(list.get_item_text(list.get_selected()), from_workshop)
+
+func load_map(name, from_workshop):
+	if from_workshop:
+		root.load_map('workshop', name)
+	else:
+		root.load_map(name, false)
 	root.toggle_menu()
 	self.hide_maps_menu()
 	workshop.hide()
@@ -215,7 +234,9 @@ func toggle_turns_cap():
 		root.settings['turns_cap'] = 0
 	else:
 		root.settings['turns_cap'] = root.settings['turns_cap'] + turns_cap_modifer
+	self.adjust_turns_cap_label()
 
+func adjust_turns_cap_label():
 	if root.settings['turns_cap'] > 0:
 		maps_turns_cap_label.set_text(str(root.settings['turns_cap']))
 	else:

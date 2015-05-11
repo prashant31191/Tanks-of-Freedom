@@ -121,8 +121,8 @@ func init_gui():
 	hud_file_save_button = hud_file.get_node("save")
 	hud_file_load_button = hud_file.get_node("load")
 	hud_file_play_button.connect("pressed", self, "play_map")
-	hud_file_save_button.connect("pressed", self, "save_map", [hud_file_name.get_text()])
-	hud_file_load_button.connect("pressed", self, "load_map", [hud_file_name.get_text()])
+	hud_file_save_button.connect("pressed", self, "save_map", [hud_file_name, true])
+	hud_file_load_button.connect("pressed", self, "load_map", [hud_file_name, true])
 
 	map = get_node("blueprint/center/scale/map")
 	terrain = map.get_node("terrain")
@@ -361,18 +361,19 @@ func toolset_prev_page():
 	return
 
 func check_map_integrity():
-	var hq_red_check = false
-	var hq_blue_check = false
+	#var hq_red_check = false
+	#var hq_blue_check = false
 
-	for x in range(MAP_MAX_X):
-		for y in range(MAP_MAX_Y):
-			if terrain.get_cell(x,y) == 6:
-				hq_blue_check = true
-			if terrain.get_cell(x,y) == 7:
-				hq_red_check = true
-		if hq_red_check and hq_blue_check:
-			return true
-	return false
+	#for x in range(MAP_MAX_X):
+	#	for y in range(MAP_MAX_Y):
+	#		if terrain.get_cell(x,y) == 6:
+	#			hq_blue_check = true
+	#		if terrain.get_cell(x,y) == 7:
+	#			hq_red_check = true
+	#	if hq_red_check and hq_blue_check:
+	#		return true
+	#return false
+	return true
 
 func play_map():
 	self.save_map(restore_file_name)
@@ -386,12 +387,24 @@ func play_map():
 		self.hud_message.show_message("HQ missing", ["In this map mode there need to be HQ building for each player. Blue and Red."])
 	return
 
-func save_map(name):
-	map.save_map(name)
-	hud_file_floppy.play("save")
+func save_map(name, input = false):
+	if input:
+		name = name.get_text()
+	if map.save_map(name):
+		self.hud_message.show_message("Map saved", ["Success","File name: "+str(name)])
+		hud_file_floppy.play("save")
+	else:
+		self.hud_message.show_message("File error", ["Failure!","File name: "+str(name)])
 
-func load_map(name):
-	map.load_map(name)
+func load_map(name, input = false):
+	if input:
+		name = name.get_text()
+	if map.load_map(name):
+		self.hud_message.show_message("Map loaded", ["Success","File name: "+str(name)])
+		hud_file_floppy.play("save")
+	else:
+		self.hud_message.show_message("File not found", ["Failure!","File name: "+str(name)])
+		
 
 func select_tool(tool_type,brush_type,button):
 	hud_toolset_active.hide()

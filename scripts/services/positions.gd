@@ -35,8 +35,10 @@ var pathfinding
 
 func _init(root):
 	root_node = root
-	bunkers = {0: null, 1: null}
 	self.root_tree = root_node.get_tree()
+	bunkers = {0: null, 1: null}
+
+func bootstrap():
 	buildings = self.root_tree.get_nodes_in_group("buildings")
 	terrains = self.root_tree.get_nodes_in_group("terrain")
 	get_bunkers()
@@ -88,8 +90,6 @@ func get_terrain():
 
 func get_units():
 	units = self.root_tree.get_nodes_in_group("units")
-	units_player_blue.clear()
-	units_player_red.clear()
 
 	for unit in units:
 		if unit.life > 0: # skip undead units (despawn bug)
@@ -171,7 +171,7 @@ func prepare_nearby_tiles_ranges():
 				values.erase(val)
 		
 		precalculated_nearby_tiles_ranges.insert(i, values)
-		i = i + 1
+		i = i +1
 
 func get_nearby_tiles(position, lookup_range=CLOSE_RANGE):
 	var tiles = []

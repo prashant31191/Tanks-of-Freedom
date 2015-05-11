@@ -1,5 +1,6 @@
 
 var root_node
+var root_tree
 var abstract_map = preload('abstract_map.gd').new()
 var ysort
 var damage_layer
@@ -9,12 +10,12 @@ var active_indicator = preload('res://gui/selector.xscn').instance()
 var battle_controller = preload('battle_controller.gd').new()
 var movement_controller = preload('movement_controller.gd').new()
 var hud_controller = preload('hud_controller.gd').new()
-var position_controller = preload("position_controller.gd").new()
-var battle_stats = preload("battle_stats.gd").new(self, position_controller)
+var battle_stats
 var sound_controller
 var ai
 var pathfinding
 var demo_timer
+var positions
 
 var current_player = 0
 var player_ap = [0,0]
@@ -32,6 +33,41 @@ var movement_arrow_tl
 var movement_arrow_tr
 
 const BREAK_EVENT_LOOP = 1
+
+func init_root(root, map, hud):
+	self.root_node = root
+	self.root_tree = self.root_node.get_tree()
+	var dependency_container = root.dependency_container
+
+	abstract_map.map = map
+	abstract_map.tilemap = map.get_node("terrain")
+	camera = root.scale_root
+	ysort = map.get_node('terrain/front')
+	damage_layer = map.get_node('terrain/destruction')
+	selector = root.selector
+	self.import_objects()
+	hud_controller.init_root(root, self, hud)
+	hud_controller.set_turn(turn)
+	if not root_node.settings['cpu_0']:
+		hud_controller.show_in_game_card([], current_player)
+
+	positions = dependency_container.positions
+	positions.get_player_bunker_position(current_player)
+	positions.bootstrap()
+	battle_stats = preload("battle_stats.gd").new()
+
+	sound_controller = root.sound_controller
+
+	pathfinding = preload('ai/pathfinding/a_star_pathfinding.gd').new()
+	ai = preload("ai/ai.gd").new(positions, pathfinding, abstract_map, self)
+
+	var movement_template = preload('res://gui/movement.xscn')
+	movement_arrow_bl = movement_template.instance()
+	movement_arrow_br = movement_template.instance()
+	movement_arrow_tl = movement_template.instance()
+	movement_arrow_tr = movement_template.instance()
+
+	demo_timer = root_node.get_node("DemoTimer")
 
 func set_active_field(position):
 	var field = abstract_map.get_field(position)
@@ -70,7 +106,7 @@ func handle_action(position):
 				self.move_unit(active_field, field)
 
 func post_handle_action():
-	position_controller.refresh_units()
+	positions.refresh_units()
 
 func capture_building(active_field, field):
 	self.use_ap()
@@ -83,43 +119,13 @@ func capture_building(active_field, field):
 		self.end_game()
 		return 1
 
-
-func init_root(root, map, hud):
-	root_node = root
-	abstract_map.map = map
-	abstract_map.tilemap = map.get_node("terrain")
-	camera = root.scale_root
-	ysort = map.get_node('terrain/front')
-	damage_layer = map.get_node('terrain/destruction')
-	selector = root.selector
-	self.import_objects()
-	hud_controller.init_root(root, self, hud)
-	hud_controller.set_turn(turn)
-	if not root_node.settings['cpu_0']:
-		hud_controller.show_in_game_card([],current_player)
-	position_controller.init_root(root)
-	position_controller.prepare_nearby_tiles()
-	position_controller.get_player_bunker_position(current_player)
-	sound_controller = root.sound_controller
-
-	pathfinding = preload('ai/a_star_pathfinding.gd').new()
-	ai = preload("ai/ai.gd").new(position_controller, pathfinding, abstract_map, self)
-
-	var movement_template = preload('res://gui/movement.xscn')
-	movement_arrow_bl = movement_template.instance()
-	movement_arrow_br = movement_template.instance()
-	movement_arrow_tl = movement_template.instance()
-	movement_arrow_tr = movement_template.instance()
-
-	demo_timer = root_node.get_node("DemoTimer")
-
 func activate_field(field):
 	self.clear_active_field()
 	if !field.object: #todo - investigate why there is no object
 		print("FAIL to activate field: ", field.position)
 	active_field = field
 	abstract_map.tilemap.add_child(active_indicator)
-	abstract_map.tilemap.move_child(active_indicator,0)
+	abstract_map.tilemap.move_child(active_indicator, 0)
 	var position = Vector2(abstract_map.tilemap.map_to_world(field.position))
 	position.y += 2
 	active_indicator.set_pos(position)
@@ -190,30 +196,32 @@ func destroy_unit(field):
 	field.object = null
 
 func spawn_unit_from_active_building():
-	if active_field == null || active_field.object.group != 'building' || active_field.object.can_spawn == false:
+	var active_object = active_field.object
+	if active_field == null || active_object.group != 'building' || active_object.can_spawn == false:
 		return
-	var spawn_point = abstract_map.get_field(active_field.object.spawn_point)
-	var required_ap = active_field.object.get_required_ap()
+	var spawn_point = abstract_map.get_field(active_object.spawn_point)
+	var required_ap = active_object.get_required_ap()
 	if spawn_point.object == null && self.has_enough_ap(required_ap):
-		var unit = active_field.object.spawn_unit(current_player)
+		var unit = active_object.spawn_unit(current_player)
 		ysort.add_child(unit)
 		unit.set_pos_map(spawn_point.position)
 		spawn_point.object = unit
-		self.deduct_ap(required_ap) 
+		self.deduct_ap(required_ap)
 		sound_controller.play_unit_sound(unit, sound_controller.SOUND_SPAWN)
 		self.activate_field(spawn_point)
 		self.move_camera_to_point(spawn_point.position)
 
 		#gather stats
-		battle_stats.add_spawn()
+		battle_stats.add_spawn(self.current_player)
+		abstract_map.map.fog_controller.clear_fog()
 
 func toggle_unit_details_view():
 	hud_controller.toggle_unit_details_view(current_player)
 
 func import_objects():
-	self.attach_objects(root_node.get_tree().get_nodes_in_group("units"))
-	self.attach_objects(root_node.get_tree().get_nodes_in_group("buildings"))
-	self.attach_objects(root_node.get_tree().get_nodes_in_group("terrain"))
+	self.attach_objects(self.root_tree.get_nodes_in_group("units"))
+	self.attach_objects(self.root_tree.get_nodes_in_group("buildings"))
+	self.attach_objects(self.root_tree.get_nodes_in_group("terrain"))
 
 func attach_objects(collection):
 	for entity in collection:
@@ -235,12 +243,14 @@ func end_turn():
 	hud_controller.set_turn(turn)
 
 	#gather stats
-	battle_stats.add_domination()
+	battle_stats.add_domination(self.current_player, positions.get_player_buildings(self.current_player).size())
 	if turn == 1 || fmod(turn, 3) == 0:
 		ai.select_behaviour_type(current_player)
 
 func move_camera_to_active_bunker():
-	self.move_camera_to_point(position_controller.get_player_bunker_position(current_player))
+	var bunker_position = positions.get_player_bunker_position(current_player)
+	if bunker_position != null:
+		self.move_camera_to_point(bunker_position)
 
 func move_camera_to_point(position):
 	abstract_map.map.move_to_map(position)
@@ -272,17 +282,17 @@ func update_ap(ap):
 		hud_controller.warn_end_turn()
 
 func refill_ap():
-	position_controller.refresh_units()
-	position_controller.refresh_buildings()
+	positions.refresh_units()
+	positions.refresh_buildings()
 
 	var total_ap = player_ap[current_player]
-	var buildings = position_controller.get_player_buildings(current_player)
+	var buildings = positions.get_player_buildings(current_player)
 	for building in buildings:
 		total_ap = total_ap + buildings[building].bonus_ap
 	self.update_ap(total_ap)
 
 func show_bonus_ap():
-	var buildings = position_controller.get_player_buildings(current_player)
+	var buildings = positions.get_player_buildings(current_player)
 	for building in buildings:
 		if buildings[building].bonus_ap > 0:
 			buildings[building].show_floating_ap()
@@ -293,6 +303,7 @@ func switch_to_player(player):
 	current_player = player
 	self.reset_player_units(player)
 	selector.set_player(player);
+	abstract_map.map.current_player = player
 	self.refill_ap()
 	if root_node.settings['cpu_' + str(player)]:
 		root_node.start_ai_timer()
@@ -302,7 +313,7 @@ func switch_to_player(player):
 	else:
 		root_node.unlock_for_player()
 		hud_controller.show_in_game_card([], current_player)
-
+	abstract_map.map.fog_controller.clear_fog()
 
 func perform_ai_stuff():
 	var success = false
@@ -313,7 +324,7 @@ func perform_ai_stuff():
 	return player_ap[current_player] > 0 && success
 
 func reset_player_units(player):
-	var units = root_node.get_tree().get_nodes_in_group("units")
+	var units = self.root_tree.get_nodes_in_group("units")
 	for unit in units:
 		if unit.player == player:
 			unit.reset_ap()
@@ -322,6 +333,8 @@ func end_game():
 	self.root_node.ai_timer.reset_state()
 	self.clear_active_field()
 	game_ended = true
+	if root_node.hud.is_hidden():
+		root_node.hud.show()
 	hud_controller.show_win(current_player, battle_stats.get_stats(), turn)
 	selector.hide()
 	if (root_node.is_demo):
@@ -352,9 +365,9 @@ func move_unit(active_field, field):
 		sound_controller.play_unit_sound(field.object, sound_controller.SOUND_MOVE)
 		self.use_ap()
 		self.activate_field(field)
-
+		abstract_map.map.fog_controller.clear_fog()
 		#gather stats
-		battle_stats.add_moves()
+		battle_stats.add_moves(self.current_player)
 
 	else:
 		sound_controller.play('no_moves')
@@ -363,7 +376,7 @@ func stats_start_time():
 	battle_stats.start_counting_time()
 
 func stats_set_time():
-	battle_stats.set_counting_time()
+	battle_stats.set_counting_time(self.current_player)
 
 func handle_battle(active_field, field):
 	if (battle_controller.can_attack(active_field.object, field.object)):
@@ -402,6 +415,7 @@ func handle_battle(active_field, field):
 		sound_controller.play('no_attack')
 
 	return BREAK_EVENT_LOOP
+
 func collateral_damage(center):
 	var damage_chance = 0.5
 	if randf() <= damage_chance:
