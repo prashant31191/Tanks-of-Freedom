@@ -46,6 +46,8 @@ var zoom_card
 var zoom_in_button
 var zoom_out_button
 
+var hourglasses_card
+
 var menu_button
 
 var player_ap
@@ -98,8 +100,8 @@ func init_root(root, action_controller_object, hud):
 	
 	var limit = self.root_node.settings.turns_cap
 	if limit == 0:
-		limit = "off"
-	turns_limit.set_text("limit: "+str(limit))
+		limit = "OFF"
+	turns_limit.set_text("LIMIT: "+str(limit))
 
 	player_ap = hud_game_card.get_node("Label")
 	game_card = hud.get_node("game_card")
@@ -181,6 +183,11 @@ func init_root(root, action_controller_object, hud):
 	hud_help_building = hud_help_bottom.get_node("building_card")
 	
 	hud_help_button.connect("pressed", self, "toggle_help")
+	
+	#
+	# HOUR GLASSES
+	#
+	hourglasses_card = hud.get_node("hourglasses")
 	
 	menu_button = hud.get_node("game_card/escape")
 	menu_button.connect("pressed", root, "toggle_menu")
@@ -393,3 +400,8 @@ func show_hud_unit(player):
 	hud_unit.show()
 	#print(hud_unit_expanded_positions[index])
 	
+func show_hourglasses():
+	hourglasses_card.show()
+
+func hide_hourglasses():
+	hourglasses_card.hide()

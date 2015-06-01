@@ -32,20 +32,20 @@ func add_damage(damage_layer):
 	var damage_frame = randi() % damage_frames
 	damage.set_frame(damage_frame)
 
-func mark_trail(new_position, player):
+func mark_trail(new_position, player, value=1):
 	var dx = clamp(position.x - new_position.x, -1, 1)
 	var parameters = ant_parameters[player]
 	if dx != 0:
 		if dx == -1:
-			parameters['left'] = parameters['left'] + 1
+			parameters['left'] = parameters['left'] + value
 		else:
-			parameters['right'] = parameters['right'] + 1
+			parameters['right'] = parameters['right'] + value
 	else:
 		var dy = clamp(position.y - new_position.y, -1, 1)
 		if dy == 1:
-			parameters['down'] = parameters['down'] + 1
+			parameters['down'] = parameters['down'] + value
 		else:
-			parameters['up'] = parameters['up'] + 1
+			parameters['up'] = parameters['up'] + value
 
 func next_tile_by_trail(directions):
 	if directions.size() == 0:
@@ -54,12 +54,22 @@ func next_tile_by_trail(directions):
 	var next_tile = position
 	var player = self.object.player
 	var parameters = ant_parameters[player]
-	var val = 0
+	var val = -1
 	var direction_name = ''
+	# TODO this directions can be not valid
+	# print('AVAILABLE', directions)
 	for direction in parameters:
-		if directions.find(direction) > -1 && parameters[direction] > val:
+		randomize()
+		if directions.find(direction) > -1:
+			if  parameters[direction] > val:
+				val = parameters[direction]
+			elif parameters[direction] == val && randf() > 0.2 : #we have two equals directions)
+				val = parameters[direction]
+
 			val = parameters[direction]
 			direction_name = direction
+
+
 	if direction_name == '':
 		direction_name = directions[randi() % directions.size()]
 
@@ -72,5 +82,6 @@ func next_tile_by_trail(directions):
 	elif direction_name == 'down':
 		next_tile.y = next_tile.y + 1
 
+	print('!', direction_name)
 	return next_tile
 

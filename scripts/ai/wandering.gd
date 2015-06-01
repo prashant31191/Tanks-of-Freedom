@@ -27,12 +27,14 @@ func add_elemental_trails():
 	if empty_building_positions.size() > 0:
 		for building_pos in empty_building_positions:
 			self.abstract_map.add_trails([self.pathfinding.pathSearch(bunker_0, building_pos, [])], 0)
+
 			self.abstract_map.add_trails([self.pathfinding.pathSearch(bunker_1, building_pos, [])], 1)
 
 	self.elemental_trails_generated = true
 
+
 func wander(unit, units):
-	print('wandering!!')
+	# print('wandering!!')
 	var position = unit.get_pos_map()
 	var current_field = self.abstract_map.get_field(position)
 	var available_directions = self.abstract_map.get_available_directions(unit, position)
@@ -44,8 +46,8 @@ func wander(unit, units):
 			var available_directions_size = available_directions.size()
 			if (available_directions_size > 0):
 				if (self.abstract_map.is_spawning_point(position)):
-					score = 100
+					score = 80
 				else:
-					score = available_directions.size() * 10 + randi() % units.size()
+					score = available_directions.size() * 5 + randi() % units.size()
 
 			self.actions.append_action(action, score)

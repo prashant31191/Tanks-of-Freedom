@@ -2,14 +2,14 @@ var positions
 var pathfinding
 var abstract_map
 var action_controller
-const CLOSE_RANGE = 3
-const LOOKUP_RANGE = 10
+const CLOSE_RANGE = 6
+const LOOKUP_RANGE = 20
 var actions
 var wandering
 var current_player_ap = 0
 var current_player
 
-const SPAWN_LIMIT = 25
+const SPAWN_LIMIT = 12
 const DEBUG = false
 var terrain
 var units
@@ -39,9 +39,9 @@ func _init(controller, astar_pathfinding, map, action_controller_object):
 	behaviour_normal = preload('behaviours/normal.gd').new()
 	behaviour_destroyer = preload('behaviours/destroyer.gd').new()
 	behaviour_explorer = preload('behaviours/explorer.gd').new()
-	behaviours = [behaviour_normal, behaviour_explorer, behaviour_destroyer]
+	behaviours = [behaviour_destroyer]
 
-	player_behaviours = [behaviour_normal, behaviour_normal]
+	player_behaviours = [behaviour_destroyer, behaviour_destroyer]
 
 func select_behaviour_type(player):
 	player_behaviours[player] = behaviours[floor(rand_range(0, behaviours.size()))]
@@ -83,9 +83,8 @@ func __gather_unit_data(own_buildings, own_units, terrain):
 			var destinations = []
 			destinations = self.__gather_unit_destinations(position, current_player)
 			destinations = destinations + __gather_buildings_destinations(position, current_player)
-			if destinations.size() == 0:
-				if current_player_ap > 3:
-					self.wandering.wander(unit, self.units)
+			if current_player_ap > 5:
+				self.wandering.wander(unit, self.units)
 			else:
 				#TODO - calculate data in units groups
 				pathfinding.set_cost_grid(cost_grids[unit.get_type()])
@@ -202,6 +201,12 @@ func __add_building_action(building, enemy_units_nearby, own_units):
 	var spawn_point = abstract_map.get_field(building.spawn_point)
 	if (spawn_point.object == null && building.get_required_ap() <= current_player_ap):
 		var score = building.estimate_action(action_type, enemy_units_nearby, own_units)
+		var claim_modifier = 15 - (action_controller.turn - building.turn_claimed)
+		if claim_modifier < 0:
+			claim_modifier = 0
+
+		if building.type == building.TYPE_BARRACKS:
+			score = score + claim_modifier
 
 		var action = self.action_builder.create(action_type, building, null)
 		actions.append_action(action, score)

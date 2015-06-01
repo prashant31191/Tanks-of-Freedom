@@ -42,20 +42,60 @@ const PAN_THRESHOLD = 60
 const GEN_GRASS = 6
 const GEN_FLOWERS = 3
 
-const MAP_MAX_X = 64
-const MAP_MAX_Y = 64
+const MAP_MAX_X = 32
+const MAP_MAX_Y = 32
 
 var map_file = File.new()
-var campaign = preload("res://maps/campaign.gd").new()
+var campaign
 
-var map_grass = [preload('res://terrain/grass_1.xscn'),preload('res://terrain/grass_2.xscn')]
-var map_forest = [preload('res://terrain/forest_1.xscn'),preload('res://terrain/forest_2.xscn'),preload('res://terrain/forest_3.xscn'),preload('res://terrain/forest_4.xscn'),preload('res://terrain/forest_5.xscn')]
-var map_city = [preload('res://terrain/city_1.xscn'),preload('res://terrain/city_2.xscn'),preload('res://terrain/city_3.xscn'),preload('res://terrain/city_4.xscn'),preload('res://terrain/city_5.xscn')]
-var map_mountain = [preload('res://terrain/mountain_1.xscn'),preload('res://terrain/mountain_2.xscn'),preload('res://terrain/mountain_3.xscn'),preload('res://terrain/mountain_4.xscn')]
+var wave = preload('res://terrain/wave.xscn')
+var underground_rock = preload('res://terrain/underground.xscn')
+var map_grass = [
+	preload('res://terrain/grass_1.xscn'),
+	preload('res://terrain/grass_2.xscn')]
+var map_forest = [
+	preload('res://terrain/forest_1.xscn'),
+	preload('res://terrain/forest_2.xscn'),
+	preload('res://terrain/forest_3.xscn'),
+	preload('res://terrain/forest_4.xscn'),
+	preload('res://terrain/forest_5.xscn'),
+	preload('res://terrain/forest_6.xscn')]
+var map_city = [
+	preload('res://terrain/city_1.xscn'),
+	preload('res://terrain/city_2.xscn'),
+	preload('res://terrain/city_3.xscn'),
+	preload('res://terrain/city_4.xscn'),
+	preload('res://terrain/city_5.xscn')]
+var map_mountain = [
+	preload('res://terrain/mountain_1.xscn'),
+	preload('res://terrain/mountain_2.xscn'),
+	preload('res://terrain/mountain_3.xscn'),
+	preload('res://terrain/mountain_4.xscn')]
 var map_statue = preload('res://terrain/city_statue.xscn')
-var map_flowers = [preload('res://terrain/flowers_1.xscn'),preload('res://terrain/flowers_2.xscn'),preload('res://terrain/flowers_3.xscn'),preload('res://terrain/flowers_4.xscn'),preload('res://terrain/log.xscn'),preload('res://terrain/flowers_5.xscn'),preload('res://terrain/flowers_6.xscn'),preload('res://terrain/flowers_7.xscn')]
-var map_buildings = [preload('res://buildings/bunker_blue.xscn'),preload('res://buildings/bunker_red.xscn'),preload('res://buildings/barrack.xscn'),preload('res://buildings/factory.xscn'),preload('res://buildings/airport.xscn'),preload('res://buildings/tower.xscn'),preload('res://buildings/fence.xscn')]
-var map_units = [preload('res://units/soldier_blue.xscn'),preload('res://units/tank_blue.xscn'),preload('res://units/helicopter_blue.xscn'),preload('res://units/soldier_red.xscn'),preload('res://units/tank_red.xscn'),preload('res://units/helicopter_red.xscn')]
+var map_flowers = [
+	preload('res://terrain/flowers_1.xscn'),
+	preload('res://terrain/flowers_2.xscn'),
+	preload('res://terrain/flowers_3.xscn'),
+	preload('res://terrain/flowers_4.xscn'),
+	preload('res://terrain/log.xscn'),
+	preload('res://terrain/flowers_5.xscn'),
+	preload('res://terrain/flowers_6.xscn'),
+	preload('res://terrain/flowers_7.xscn')]
+var map_buildings = [
+	preload('res://buildings/bunker_blue.xscn'),
+	preload('res://buildings/bunker_red.xscn'),
+	preload('res://buildings/barrack.xscn'),
+	preload('res://buildings/factory.xscn'),
+	preload('res://buildings/airport.xscn'),
+	preload('res://buildings/tower.xscn'),
+	preload('res://buildings/fence.xscn')]
+var map_units = [
+	preload('res://units/soldier_blue.xscn'),
+	preload('res://units/tank_blue.xscn'),
+	preload('res://units/helicopter_blue.xscn'),
+	preload('res://units/soldier_red.xscn'),
+	preload('res://units/tank_red.xscn'),
+	preload('res://units/helicopter_red.xscn')]
 
 func _input(event):
 	pos = terrain.get_pos()
@@ -112,7 +152,7 @@ func move_to_map(target):
 	if not root.settings['camera_follow']:
 		return
 
-	if not self.camera_follow:
+	if not self.camera_follow && fog_controller.is_fogged(target.x, target.y):
 		return
 
 	if not mouse_dragging:
@@ -176,6 +216,8 @@ func generate_map():
 			# underground
 			if terrain_cell > -1:
 				self.generate_underground(x, y)
+			else:
+				self.generate_wave(x, y)
 
 			# grass, flowers, log
 			if terrain_cell == 1:
@@ -381,7 +423,8 @@ func spawn_unit(x, y, type):
 
 func generate_underground(x, y):
 	var generate = false
-
+	var temp = null
+	
 	if terrain.get_cell(x, y-1) == -1:
 		generate = true
 	if terrain.get_cell(x+1, y) == -1:
@@ -390,9 +433,30 @@ func generate_underground(x, y):
 		generate = true
 	if terrain.get_cell(x-1, y) == -1:
 		generate = true
+		
+	if generate:
+		temp = underground_rock.instance()
+		temp.set_pos(terrain.map_to_world(Vector2(x+1,y+1)))
+		underground.add_child(temp)
+		temp = null
+
+func generate_wave(x, y):
+	var generate = false
+	var temp = null
+	
+	for cx in range(x-2, x+2):
+		for cy in range(y-2, y+2):
+			if terrain.get_cell(cx, cy) > -1:
+				generate = true
 
 	if generate:
-		underground.set_cell(x+1, y+1, 0)
+		temp = wave.instance()
+		temp.set_pos(terrain.map_to_world(Vector2(x+1,y+1)))
+		underground.add_child(temp)
+		temp = null
+		return true
+
+	return false
 
 func set_default_zoom():
 	self.scale = Vector2(2, 2)
@@ -435,7 +499,8 @@ func store_map_in_binary_file(file_name, data):
 	var the_file = map_file.open("user://" + file_name + ".tof", File.WRITE)
 	map_file.store_var(data)
 	map_file.close()
-	self.root.dependency_container.map_list.store_map(file_name)
+	if file_name != "restore_map":
+		self.root.dependency_container.map_list.store_map(file_name)
 
 func store_map_in_plain_file(file_name, data):
 	var the_file = map_file.open("user://" + file_name + ".gd", File.WRITE)
@@ -460,7 +525,7 @@ func check_file_name(name):
 		return false
 
 	var validator = RegEx.new()
-	validator.compile("^([a-zA-Z0-9-]*)$")
+	validator.compile("^([a-zA-Z0-9-_]*)$")
 	validator.find(name)
 	var matches = validator.get_captures()
 
@@ -494,6 +559,8 @@ func load_map_from_file(file_path):
 func fill_map_from_data_array(data):
 	var cell
 	self.init_nodes()
+	if not self.show_blueprint:
+		underground.clear()
 	terrain.clear()
 	units.clear()
 	for cell in data:
@@ -518,13 +585,19 @@ func clear_layer(layer):
 	if layer == 1:
 		units.clear()
 
+func init_background():
+	print('background generate..')
+	for x in range(MAP_MAX_X):
+		for y in range(MAP_MAX_Y):
+			underground.set_cell(x,y,1)
+
 func init_nodes():
 	underground = self.get_node("underground")
 	terrain = self.get_node("terrain")
 	units = terrain.get_node("units")
 	map_layer_back = terrain.get_node("back")
 	map_layer_front = terrain.get_node("front")
-
+	
 func _ready():
 	root = get_node("/root/game")
 	self.init_nodes()
@@ -544,7 +617,9 @@ func _ready():
 	self.add_child(shake_timer)
 
 	# where the magic happens
-	if not show_blueprint:
+	if show_blueprint:
+		self.init_background()
+	else:
 		self.generate_map()
 
 	set_process_input(true)

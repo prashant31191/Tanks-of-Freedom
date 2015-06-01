@@ -4,24 +4,36 @@
 
 ## Indie Turn Based Strategy in Isometric Pixel Art
 
-Push the frontline with your tanks, support with your helicopters, and claim strategic buildings with your infantry! Issue orders and fight for freedom!
+Classic turn-based strategy game with two armies fighting against each other. Challenge yourself in campaign against AI or hot-seat battle with a friend. Using easy map editor you can create any imaginable scenario to play and share online for others to discover!
 
-Use roads to move the front forward with your armed forces. Break through the enemy lines and take control of your opponent's bunker to win the battle.
-
-## Why should you play Tanks of Freedom?
-
-hand-made pixel art assets in 16 colours!
-original soundtrack made on Access Virus C and Korg Electribe
-modern theme of real world events
-free (if you want to)
-great performance provided by Godot Engine
-available for Windows, Linux, OSX, Android and BlackBerry OS 10
-constantly updated with new features and bugfixes
-by gamers for gamers
+Each 32x32 sprite was handcrafted in gorgeous, 16 colour pixel art. Original soundtrack was made on Access Virus C and Korg Electribe. Sound effects were made on real GameBoy hardware. Game is open-source and runs smoothly thanks to Godot Engine.
 
 ## Download
-Windows, Linux, OSX, Android, Blackberry:
-- [http://w84death.itch.io/tanks-of-freedom](http://w84death.itch.io/tanks-of-freedom)
+### Official builds:
+- Windows
+- Linux
+- OSX
+- Android (works on Blackberry and OUYA)
+
+Available at game page: [w84death.itch.io/tanks-of-freedom](http://w84death.itch.io/tanks-of-freedom)
+
+### Unofficial ports:
+- F-Droid
+
+Download at [f-droid.org](https://f-droid.org/repository/browse/?fdid=in.p1x.tanks_of_freedom)
+
+Thanks to [est31](https://github.com/est31)!
+
+### Build from sources
+To get latest and greatest version of the game you'll need to use our source code and Godot Engine)
+
+- downlaod & install [Godot Engine](http://www.godotengine.org/wp/download/)
+- download our sources [master.zip](https://github.com/w84death/Tanks-of-Freedom/archive/master.zip)
+- unzip
+- open Godot and import our game
+- run :)
+
+Follow [this tutorial](https://github.com/okamstudio/godot/wiki/export) on learn how to export game for each platform.
 
 ## Media
 ![Imgur](http://i.imgur.com/pyDr87G.png)

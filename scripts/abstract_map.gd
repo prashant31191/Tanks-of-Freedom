@@ -69,10 +69,10 @@ func create_tile_type_map_for_unit(unit):
 
 	var row
 	var tiles_type = []
-	for x in range(size.x + 1):
+	for x in range(32):
 		row = []
-		for y in range(size.y + 1):
-			var type = fields[y][x].get_terrain_type()
+		for y in range(32):
+			var type = self.get_field(Vector2(x, y)).get_terrain_type()
 			if (type == -1):
 				row.insert(y, nonwalkable_cost)
 			else:
@@ -91,12 +91,13 @@ func calculate_path_cost(unit, path):
 	var cost_map = tiles_cost_map[unit.get_type()]
 	for pos in path:
 		if !skip:
-			cost = cost + cost_map[pos.x][pos.y]
+			if cost_map[pos.x][pos.y]:
+				cost = cost + cost_map[pos.x][pos.y]
 		skip = false
 
 	return cost
 
-func add_trails(paths, player):
+func add_trails(paths, player, value=1):
 	var count
 	var pos
 	for path in paths:
@@ -122,7 +123,7 @@ func get_available_directions(unit, current_position):
 	if self.__check_direction_avaibility(next_position) && !unit.check_hiccup(next_position):
 		directions.append('up')
 
-	next_position = __get_next_position(current_position, 1, 1)
+	next_position = __get_next_position(current_position, 0, 1)
 	if self.__check_direction_avaibility(next_position) && !unit.check_hiccup(next_position):
 		directions.append('down')
 
@@ -136,10 +137,13 @@ func __get_next_position(current_position, x_mod, y_mod):
 	return tmp
 
 func __check_direction_avaibility(next_position):
+	# we can assume that if building can be catchable it will be handled by standard ai
+
 	if next_position.x < 0 || next_position.y < 0:
 		return false
 
 	var field = get_field(next_position)
+	#print('position check', next_position)
 	if field.terrain_type != - 1 && field.object == null:
 		return true
 

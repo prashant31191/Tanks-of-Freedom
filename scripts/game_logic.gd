@@ -8,7 +8,6 @@ var game_scale
 var scale_root
 var hud_template = preload('res://gui/gui.xscn')
 var menu = preload('res://gui/menu.xscn').instance()
-var cursor = preload('res://gui/cursor.xscn').instance()
 
 var intro = preload('res://intro.xscn').instance()
 
@@ -32,7 +31,9 @@ var settings = {
 	'cpu_0' : false,
 	'cpu_1' : true,
 	'turns_cap': 0,
-	'camera_follow': true
+	'camera_follow': true,
+	'music_volume': 0.4,
+	'sound_volume': 0.8
 }
 
 var is_map_loaded = false
@@ -86,15 +87,21 @@ func start_ai_timer():
 	ai_timer.start()
 
 func load_map(template_name, workshop_file_name = false):
+	var human_player = 'cpu_0'
 	self.unload_map()
 	current_map_name = template_name
 	current_map = map_template.instance()
+	current_map.campaign = dependency_container.campaign
 	self.workshop_file_name = workshop_file_name
 	if workshop_file_name:
 		self.is_from_workshop = true
 		current_map.load_map(workshop_file_name)
 	else:
+		human_player = 'cpu_' + str(self.dependency_container.campaign.get_map_player(template_name))
 		self.is_from_workshop = false
+		self.settings['cpu_0'] = true
+		self.settings['cpu_1'] = true
+		self.settings[human_player] = false
 		current_map.load_campaign_map(template_name)
 	current_map.show_blueprint = false
 	hud = hud_template.instance()
@@ -105,12 +112,14 @@ func load_map(template_name, workshop_file_name = false):
 	scale_root.add_child(current_map)
 	menu.raise()
 	self.add_child(hud)
-	cursor.raise()
 
 	game_scale = scale_root.get_scale()
 	action_controller = preload("action_controller.gd").new()
 	action_controller.init_root(self, current_map, hud)
-	action_controller.switch_to_player(0)
+	if workshop_file_name:
+		action_controller.switch_to_player(0)
+	else:
+		action_controller.switch_to_player(self.dependency_container.campaign.get_map_player(template_name))
 	hud_controller = action_controller.hud_controller
 	hud_controller.show_map()
 	selector.init(action_controller)
@@ -118,7 +127,8 @@ func load_map(template_name, workshop_file_name = false):
 		menu.close_button.show()
 	is_map_loaded = true
 	set_process_input(true)
-	if settings['cpu_0']:
+
+	if settings[human_player]:
 		self.lock_for_cpu()
 	else:
 		self.unlock_for_player()
@@ -180,6 +190,11 @@ func lock_for_cpu():
 	selector.hide()
 	if self.settings['cpu_0'] * self.settings['cpu_1'] == 0:
 		self.current_map.camera_follow = false
+		#hud_controller.show_hourglasses() <- why this do not work?
+		hud.get_node("hourglasses").show()
+	else:
+		#hud_controller.hide_hourglasses()
+		hud.get_node("hourglasses").hide()
 
 func unlock_for_player():
 	is_locked_for_cpu = false
@@ -187,6 +202,8 @@ func unlock_for_player():
 	hud.get_node("top_center/turn_card/end_turn_red").set_disabled(false)
 	selector.show()
 	self.current_map.camera_follow = true
+	#hud_controller.hide_hourglasses()
+	hud.get_node("hourglasses").hide()
 
 func lock_for_demo():
 	is_demo = true
@@ -226,7 +243,6 @@ func write_settings_to_file():
 	return
 
 func _ready():
-	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	self.dependency_container.init_root(self)
 	self.read_settings_from_file()
 	scale_root = get_node("/root/game/pixel_scale")
@@ -236,7 +252,5 @@ func _ready():
 	menu.init_root(self)
 	menu.hide()
 	intro.init_root(self)
-	cursor.hide()
-	self.add_child(cursor)
 	self.add_child(intro)
 	pass
